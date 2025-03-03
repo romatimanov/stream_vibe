@@ -1,0 +1,148 @@
+.qestion {
+  margin-bottom: 60px;
+}
+
+.qestionTextContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accTitle {
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 500;
+  line-height: clamp(16px, 2vw, 24px);
+  color: #fff;
+}
+.accGroup {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.accGroup::before,
+.accGroup::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 16px;
+  height: 2px;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accGroup::before {
+  transform: rotate(0deg);
+}
+
+.accGroup::after {
+  transform: rotate(90deg);
+}
+
+.accordionItem[data-state="open"] .accGroup::before {
+  display: none;
+}
+
+.accordionItem[data-state="open"] .accGroup::after {
+  transform: rotate(0);
+}
+.number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 67px;
+  color: #fff;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  background: #1f1f1f;
+  border-radius: 10px;
+}
+.accordionRoot {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.accordionItem {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.accordionItem:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: rgb(229, 0, 0);
+  background: linear-gradient(
+    to right,
+    #141414 0% -18%,
+    red 60% 51%,
+    #141414 82% 100%
+  );
+}
+
+.accordionTrigger {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 34px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: transparent;
+}
+
+.accordionContent {
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+  transition: height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.accordionItem[data-state="open"] .accordionContent {
+  height: auto;
+  opacity: 1;
+  padding: 0 15px 20px 115px;
+  animation: slideDown 0.3s ease-out forwards;
+}
+.accordionItem[data-state="open"] .accordionTrigger {
+  padding: 34px 34px 0 34px;
+}
+.accordionItem[data-state="closed"] .accordionContent {
+  animation: slideUp 0.3s ease-out forwards;
+}
+.accContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}

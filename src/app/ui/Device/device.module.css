@@ -1,0 +1,48 @@
+.device {
+  position: relative;
+  background-color: #0f0f0f;
+  padding: 45px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border: 2px solid #1f1f1f;
+}
+
+.device::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(229, 0, 0);
+  background: linear-gradient(-142deg, #e50000 -181%, #0000 32%);
+}
+.deviceContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.deviceIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f1f1f;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+}
+.text {
+  color: #999999;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  line-height: clamp(20px, 2vw, 32px);
+}
+.title {
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 700;
+  line-height: clamp(22px, 2vw, 36px);
+}

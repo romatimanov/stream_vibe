@@ -1,0 +1,31 @@
+.movieBox {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  border: 2px solid #1f1f1f;
+  transition: all 0.3s ease-in-out;
+}
+.movieBox:hover {
+  transform: scale(0.97);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow {
+  transition: transform 0.3s ease-in-out;
+}
+
+.title {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 400;
+  line-height: clamp(16px, 2vw, 20px);
+}
