@@ -110,7 +110,7 @@ export default function Explore() {
         }}
         modules={[Navigation, Pagination]}
         spaceBetween={20}
-        slidesPerView={5}
+        slidesPerView={"auto"}
         loop={true}
         className={style.exploreSwiper}
       >

@@ -27,7 +27,7 @@ export const previewApi = createApi({
         params: {
           api_key: API_KEY,
           language,
-          page: 1,
+          page: 2,
         },
       }),
     }),

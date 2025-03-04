@@ -12,6 +12,7 @@ export default function Preview() {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
+
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
 
   if (isLoading) return <div>Загрузка...</div>;

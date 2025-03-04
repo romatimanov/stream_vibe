@@ -1,0 +1,72 @@
+.footer {
+  background-color: #0f0f0f;
+}
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  justify-content: space-between;
+  padding: 100px 0;
+}
+.footerMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footerMenuTitle {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 700;
+  line-height: clamp(18px, 2vw, 24px);
+}
+
+.footerList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.footerList li {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 500;
+  line-height: clamp(16px, 2vw, 22px);
+  color: #999;
+  list-style-type: none;
+}
+.social {
+  display: flex;
+  gap: 15px;
+}
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  width: 56px;
+  height: 56px;
+  border: 1px solid #262626;
+}
+.copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 50px 0;
+  border-top: 2px solid #262626;
+}
+.copyContent {
+  display: flex;
+  align-items: center;
+}
+.copyLink,
+.copyText {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 500;
+  line-height: clamp(16px, 2vw, 22px);
+  color: #999;
+}
+.copyLink {
+  padding: 0 20px;
+}
+.copyLink:not(:last-child) {
+  border-right: 2px solid #262626;
+}

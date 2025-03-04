@@ -58,3 +58,8 @@
   color: #bfbfbf;
   font-size: 16px;
 }
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 16px;
+  }
+}

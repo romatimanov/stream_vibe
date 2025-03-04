@@ -1,0 +1,36 @@
+.plan {
+  margin-bottom: 60px;
+}
+.planTextContent {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+.chooseGroup {
+  background-color: #0f0f0f;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #1f1f1f;
+}
+.btn {
+  padding: 14px 24px;
+  color: #999;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  line-height: clamp(16px, 2vw, 24px);
+  border-radius: 10px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer2;
+}
+.btnActive {
+  color: #fff;
+  background-color: #1f1f1f;
+}
+.choosePlan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}

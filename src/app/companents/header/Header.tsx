@@ -8,12 +8,14 @@ import { AppDispatch, RootState } from "@/app/store/store";
 import { setLanguage } from "@/app/store/slice/languageSlice";
 import { components } from "react-select";
 import { customStyles, options } from "./select";
+import { useResize } from "@/app/hook/useResize";
 
 export default function Header() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
   const [isClient, setIsClient] = useState(false);
   const [search, setSearch] = useState(false);
+  const isMobile = useResize(768);
 
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
@@ -53,13 +55,23 @@ export default function Header() {
   return (
     <header className={`${styles.header} container`}>
       <div className={styles.headerContent}>
-        <Image
-          className={styles.logo}
-          src="/Logo.png"
-          alt="logo"
-          width={200}
-          height={60}
-        />
+        {!isMobile ? (
+          <Image
+            className={styles.logo}
+            src="/Logo.png"
+            alt="logo"
+            width={200}
+            height={60}
+          />
+        ) : (
+          <Image
+            className={styles.logo}
+            src="/logo-mob.png"
+            alt="logo"
+            width={116}
+            height={35}
+          />
+        )}
         <nav className={styles.nav}>
           {search ? (
             <input
