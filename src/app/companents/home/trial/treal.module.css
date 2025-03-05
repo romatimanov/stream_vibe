@@ -51,3 +51,27 @@
   object-fit: cover;
   object-position: center;
 }
+@media (max-width: 920px) {
+  .trial {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 768px) {
+  .trialContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .trial {
+    margin-bottom: 40px;
+    border-radius: 10px;
+  }
+  .trialContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+}

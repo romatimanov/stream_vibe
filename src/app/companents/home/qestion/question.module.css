@@ -146,3 +146,37 @@
     transform: translateY(-5px);
   }
 }
+@media (max-width: 920px) {
+  .accContent {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .accordionRoot {
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .qestionTextContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .qestion {
+    margin-bottom: 40px;
+  }
+  .accordionTrigger {
+    padding: 20px 0;
+    font-size: 18px;
+  }
+  .accordionItem[data-state="open"] .accordionTrigger {
+    padding: 20px 0 0 0;
+  }
+  .accordionItem[data-state="open"] .accordionContent {
+    padding: 0 15px 20px 80px;
+  }
+  .accGroup {
+    gap: 20px;
+  }
+}

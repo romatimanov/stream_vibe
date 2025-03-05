@@ -19,7 +19,7 @@ export default function Preview() {
   if (error) return <div>Ошибка загрузки</div>;
 
   return (
-    <div className={styles.preview}>
+    <section className={styles.preview}>
       <div className={styles.previewSlider}>
         <Image
           className={styles.previewBackground}
@@ -135,6 +135,6 @@ export default function Preview() {
             : "Начни смотреть сейчас"}
         </Button>
       </div>
-    </div>
+    </section>
   );
 }

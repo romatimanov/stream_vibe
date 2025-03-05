@@ -107,14 +107,15 @@
 }
 .previewTitle {
   color: #fff;
-  font-size: clamp(26px, 2vw, 58px);
-  line-height: clamp(32px, 2vw, 84px);
+  font-size: clamp(26px, 3vw, 58px);
+  line-height: clamp(32px, 3vw, 84px);
   font-weight: 700;
 }
 .previewText {
   color: #999999;
-  font-size: clamp(12px, 2vw, 16px);
-  line-height: clamp(18px, 2vw, 24px);
+  font-size: clamp(12px, 3vw, 16px);
+  line-height: clamp(18px, 3vw, 24px);
+  font-weight: 400;
 }
 .previewButton {
   margin: 0 auto;

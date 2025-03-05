@@ -29,3 +29,9 @@
   font-weight: 400;
   line-height: clamp(16px, 2vw, 20px);
 }
+@media (max-width: 600px) {
+  .movieBox {
+    width: 178px;
+    padding: 15px;
+  }
+}

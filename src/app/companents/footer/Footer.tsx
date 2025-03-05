@@ -17,14 +17,26 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                {currentLanguage === "en-US" ? "Categories" : "Категории"}
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Categories" : "Категории"}
+                </a>
               </li>
-              <li>{currentLanguage === "en-US" ? "Devices" : "Устройства"}</li>
-              <li>{currentLanguage === "en-US" ? "Pricing" : "Цены"}</li>
               <li>
-                {currentLanguage === "en-US"
-                  ? "FAQ"
-                  : "Часто задаваемые вопросы"}
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Devices" : "Устройства"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Pricing" : "Цены"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US"
+                    ? "FAQ"
+                    : "Часто задаваемые вопросы"}
+                </a>
               </li>
             </ul>
           </div>
@@ -33,11 +45,31 @@ export default function Footer() {
               {currentLanguage === "en-US" ? "Movies" : "Фильмы"}
             </h4>
             <ul className={style.footerList}>
-              <li>{currentLanguage === "en-US" ? "Genres" : "Жанры"}</li>
-              <li>{currentLanguage === "en-US" ? "Trending" : "Популярные"}</li>
-              <li>{currentLanguage === "en-US" ? "New" : "Новые"}</li>
-              <li>{currentLanguage === "en-US" ? "Release" : "Выпуск"}</li>
-              <li>{currentLanguage === "en-US" ? "Popular" : "Популярные"}</li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Genres" : "Жанры"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Trending" : "Популярные"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "New" : "Новые"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Release" : "Выпуск"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Popular" : "Популярные"}
+                </a>
+              </li>
             </ul>
           </div>
           <div className={style.footerMenu}>
@@ -45,11 +77,31 @@ export default function Footer() {
               {currentLanguage === "en-US" ? "Shows" : "Шоу"}
             </h4>
             <ul className={style.footerList}>
-              <li>{currentLanguage === "en-US" ? "Genres" : "Жанры"}</li>
-              <li>{currentLanguage === "en-US" ? "Trending" : "Популярные"}</li>
-              <li>{currentLanguage === "en-US" ? "New" : "Новые"}</li>
-              <li>{currentLanguage === "en-US" ? "Release" : "Выпуск"}</li>
-              <li>{currentLanguage === "en-US" ? "Popular" : "Популярные"}</li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Genres" : "Жанры"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Trending" : "Популярные"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "New" : "Новые"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Release" : "Выпуск"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Popular" : "Популярные"}
+                </a>
+              </li>
             </ul>
           </div>
           <div className={style.footerMenu}>
@@ -58,9 +110,11 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                {currentLanguage === "en-US"
-                  ? "Contact Us"
-                  : "Связаться с нами"}
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US"
+                    ? "Contact Us"
+                    : "Связаться с нами"}
+                </a>
               </li>
             </ul>
           </div>
@@ -69,8 +123,16 @@ export default function Footer() {
               {currentLanguage === "en-US" ? "Subscription" : "Подписка"}
             </h4>
             <ul className={style.footerList}>
-              <li>{currentLanguage === "en-US" ? "Plans" : "План"}</li>
-              <li>{currentLanguage === "en-US" ? "Features" : "Функции"}</li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Plans" : "План"}
+                </a>
+              </li>
+              <li>
+                <a href="#" className={style.footerLink}>
+                  {currentLanguage === "en-US" ? "Features" : "Функции"}
+                </a>
+              </li>
             </ul>
           </div>
           <div className={style.footerMenu}>

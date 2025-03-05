@@ -21,7 +21,6 @@ export default function Explore() {
   );
   const [language, setLanguage] = useState<string | null>(currentLanguage);
   const [moviesByGenre, setMoviesByGenre] = useState<Record<number, any[]>>({});
-
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -76,7 +75,6 @@ export default function Explore() {
           </button>
         </div>
       </div>
-
       <Swiper
         onBeforeInit={(swiper) => {
           if (

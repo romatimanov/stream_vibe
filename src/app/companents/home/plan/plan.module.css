@@ -12,6 +12,7 @@
   padding: 10px;
   border-radius: 10px;
   border: 2px solid #1f1f1f;
+  white-space: nowrap;
 }
 .btn {
   padding: 14px 24px;
@@ -23,7 +24,7 @@
   background-color: transparent;
   outline: none;
   border: none;
-  cursor: pointer2;
+  cursor: pointer;
 }
 .btnActive {
   color: #fff;
@@ -33,4 +34,22 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+@media (max-width: 920px) {
+  .choosePlan {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .planTextContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .plan {
+    margin-bottom: 40px;
+  }
 }

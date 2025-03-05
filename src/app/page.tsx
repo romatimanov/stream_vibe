@@ -1,20 +1,16 @@
-import Explore from "./companents/explore/Explore";
-import Header from "./companents/header/Header";
-import Plan from "./companents/plan/Plan";
-import Preview from "./companents/preview/Preview";
-import Provide from "./companents/provide/Provide";
-import Qestion from "./companents/qestion/Qestion";
-import Trial from "./companents/trial/Treal";
+"use client";
+
+import { HomePage } from "./pages/home/HomePage";
+import { useSelector } from "react-redux";
+import { Movies } from "./pages/movies/Movies.tsx";
 
 export default function Home() {
+  const activePage = useSelector((state: any) => state.activePage.activePage);
+
   return (
-    <div>
-      <Preview />
-      <Explore />
-      <Provide />
-      <Qestion />
-      <Plan />
-      <Trial />
-    </div>
+    <>
+      {activePage === "home" && <HomePage />}
+      {activePage === "movies" && <Movies />}
+    </>
   );
 }

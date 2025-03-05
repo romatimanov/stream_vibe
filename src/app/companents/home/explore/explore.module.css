@@ -80,3 +80,36 @@
 :global(.swiper-slide) {
   width: 300px !important;
 }
+@media (max-width: 600px) {
+  .explore {
+    margin-bottom: 40px;
+  }
+  .exploreContent {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .customControls {
+    background-color: #333;
+    height: 5px;
+    padding: 0;
+    width: max-content;
+    border: none;
+  }
+  .swiperPrev,
+  .swiperNext {
+    display: none;
+  }
+  :global(.swiper-pagination-bullet) {
+    height: 5px;
+  }
+  .exploreMovieImage {
+    border-radius: 5px;
+    object-fit: cover;
+    width: 67px !important;
+    height: 63px !important;
+  }
+  :global(.swiper-slide) {
+    width: 178px !important;
+  }
+}

@@ -46,3 +46,8 @@
   font-weight: 700;
   line-height: clamp(22px, 2vw, 36px);
 }
+@media (max-width: 920px) {
+  .device {
+    padding: 30px;
+  }
+}
