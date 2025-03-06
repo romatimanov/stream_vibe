@@ -1,24 +1,22 @@
-"use client";
-import { Provider } from "react-redux";
+import ClientProvider from "@/providers/ClientProvider";
+import Footer from "../companents/footer/Footer";
+import Header from "../companents/header/Header";
 import "./globals.css";
-import { store } from "./store/store";
-import Header from "./companents/header/Header";
-import Footer from "./companents/footer/Footer";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <Provider store={store}>
-        <body>
+    <html lang="ru">
+      <body>
+        <ClientProvider>
           <Header />
-          {children}
+          <main>{children}</main>
           <Footer />
-        </body>
-      </Provider>
+        </ClientProvider>
+      </body>
     </html>
   );
 }

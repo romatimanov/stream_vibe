@@ -1,0 +1,359 @@
+.contentImage {
+  display: flex;
+  gap: 10px;
+  background: rgb(26, 26, 26);
+  cursor: pointer;
+}
+.movieDetails {
+  margin-bottom: 100px;
+}
+.content {
+  position: relative;
+  margin-bottom: 100px;
+}
+.contentImage::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(#00000040 83%, #141414 100%);
+}
+.poster {
+  width: 100%;
+  max-width: 1620px;
+  max-height: 835px;
+  border-radius: 5px;
+  object-fit: cover;
+  z-index: 1;
+}
+.aboutFilm {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+.filmButton {
+  min-width: 57px;
+  height: 57px;
+  border-radius: 10px;
+  background-color: #0f0f0f;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.filmButtons {
+  display: flex;
+  gap: 15px;
+}
+.btnGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.info {
+  background-color: #1a1a1a;
+  border: 2px solid #262626;
+  border-radius: 10px;
+  padding: 40px;
+}
+.description {
+  color: #fff;
+}
+.caseSlide {
+  width: 102px !important;
+}
+.castImage {
+  width: 102px;
+  height: 109px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.customControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 120px;
+}
+.customControlsReview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 240px;
+}
+.swiperPrev,
+.swiperNext {
+  min-width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #0f0f0f;
+  border: 2px solid #262626;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.swiperPrev:hover,
+.swiperNext:hover {
+  background-color: #414141;
+}
+.swiperPagination {
+  left: 0 !important;
+  transform: translate(0) !important;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+:global(.swiper-pagination-bullet) {
+  background: #333333 !important;
+  width: 16px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
+:global(.swiper-pagination-bullet-active) {
+  background: #e50000 !important;
+  width: 21px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
+.contentGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 102px;
+  height: 109px;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #0f0f0f;
+  border: 2px solid #262626;
+  height: 265px;
+  overflow: hidden;
+}
+.exploreSwiper {
+  cursor: pointer;
+}
+.reviewContent {
+  height: 265px;
+  overflow: hidden;
+}
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reviewAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.name {
+  font-size: 18px;
+  color: #fff;
+}
+
+.movieInfo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+.info:nth-child(1) {
+  grid-column: span 8;
+  grid-row: 1;
+}
+.info:nth-child(2) {
+  grid-column: span 8;
+  grid-row: 2;
+  height: 300px;
+}
+.info:nth-child(3) {
+  grid-column: span 8;
+  grid-row: 3;
+}
+.info:nth-child(4) {
+  grid-column: span 4;
+  grid-row: 1/4;
+  height: max-content;
+}
+.realese {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reviewText {
+  height: 300px;
+  overflow: scroll;
+}
+.exploreSlide {
+  height: auto !important;
+}
+.contentGroupInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contentAboutMovie {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.lang {
+  font-size: clamp(14px, 3vw, 18px);
+  line-height: clamp(18px, 3vw, 24px);
+  color: #fff;
+  font-weight: 500;
+  width: max-content;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: #141414;
+}
+.imdb {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: max-content;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: #141414;
+}
+.langGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.loading,
+.loading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  color: #fff;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(#00000040 83%, #141414 100%);
+}
+.director {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  padding: 14px;
+  border-radius: 10px;
+  background-color: #141414;
+  border: 2px solid #262626;
+}
+.directorImg {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.video {
+  border-radius: 10px;
+}
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ReactModal__Content {
+  padding: 20px;
+  border-radius: 10px !important;
+  border: 2px solid #262626 !important;
+  width: 100% !important;
+  max-width: max-content !important;
+  position: relative;
+  z-index: 1000;
+}
+
+@media (max-width: 920px) {
+  .movieInfo {
+    grid-template-columns: 1fr;
+  }
+  .info:nth-child(1) {
+    grid-column: span 12;
+    grid-row: 1;
+  }
+  .info:nth-child(2) {
+    grid-column: span 12;
+    grid-row: 3;
+    height: 300px;
+  }
+  .info:nth-child(3) {
+    grid-column: span 12;
+    grid-row: 4;
+  }
+  .info:nth-child(4) {
+    grid-column: span 12;
+    grid-row: 2;
+    height: max-content;
+  }
+  .info {
+    padding: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .btnGroup {
+    flex-direction: column;
+  }
+  .poster {
+    height: 468px;
+  }
+  .filmText {
+    display: none;
+  }
+  .movieDetails {
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .previewButton {
+    width: 80%;
+    justify-content: center;
+  }
+}

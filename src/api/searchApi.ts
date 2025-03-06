@@ -9,6 +9,7 @@ export interface Movie {
   id: number;
   title: string;
   poster_path: string;
+  results: any[];
 }
 
 export interface MoviesResponse {
@@ -18,15 +19,23 @@ export interface MoviesResponse {
 export const searchApi = createApi({
   reducerPath: "searchApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/3/search/movie`,
+    baseUrl: `${BASE_URL}/3/search`,
   }),
   endpoints: (builder) => ({
-    getSearchMovies: builder.query<
-      MoviesResponse,
-      { query: string; language: string }
-    >({
+    getSearchMovies: builder.query<Movie, { query: string; language: string }>({
       query: ({ query, language }) => ({
-        url: "",
+        url: "/movie",
+        params: {
+          api_key: API_KEY,
+          query,
+          language,
+          adult: false,
+        },
+      }),
+    }),
+    getSearchTv: builder.query<Movie, { query: string; language: string }>({
+      query: ({ query, language }) => ({
+        url: "/tv",
         params: {
           api_key: API_KEY,
           query,
@@ -38,4 +47,4 @@ export const searchApi = createApi({
   }),
 });
 
-export const { useGetSearchMoviesQuery } = searchApi;
+export const { useGetSearchMoviesQuery, useGetSearchTvQuery } = searchApi;

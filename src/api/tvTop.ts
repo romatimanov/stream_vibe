@@ -7,25 +7,25 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export interface Movie {
   id: number;
-  title: string;
   poster_path: string;
-  original_title?: string;
-  overview?: string;
+  vote_average: number;
+  vote_count: number;
+  backdrop_path: string;
 }
 
 export interface MoviesResponse {
   results: Movie[];
 }
 
-export const previewApi = createApi({
-  reducerPath: "previewApi",
+export const tvTopApi = createApi({
+  reducerPath: "tvTopApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/3/movie`,
+    baseUrl: `${BASE_URL}/3/tv`,
   }),
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<MoviesResponse, string>({
+    getTvTop: builder.query<MoviesResponse, string>({
       query: (language) => ({
-        url: "/popular",
+        url: "/top_rated",
         params: {
           api_key: API_KEY,
           language,
@@ -36,4 +36,4 @@ export const previewApi = createApi({
   }),
 });
 
-export const { useGetPopularMoviesQuery } = previewApi;
+export const { useGetTvTopQuery } = tvTopApi;

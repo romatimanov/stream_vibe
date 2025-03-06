@@ -1,0 +1,141 @@
+.about {
+  margin-bottom: 120px;
+}
+.exploreMovieImage {
+  position: relative;
+  width: 100%;
+  max-width: 1620px;
+  max-height: 835px;
+  border-radius: 5px;
+  object-fit: cover;
+  z-index: 1;
+}
+.imgContent {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  background: rgb(26, 26, 26);
+  cursor: pointer;
+}
+.imgContent::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(#00000040 83%, #141414 100%);
+}
+.filmText {
+  color: #fff;
+}
+.aboutContent {
+  position: relative;
+}
+
+.aboutFilm {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+.customControls {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px;
+  z-index: 10;
+}
+.filmButton {
+  min-width: 57px;
+  height: 57px;
+  border-radius: 10px;
+  background-color: #0f0f0f;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.filmButtons {
+  display: flex;
+  gap: 15px;
+}
+.btnGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.swiperPrev,
+.swiperNext {
+  min-width: 57px;
+  height: 57px;
+  border-radius: 10px;
+  background-color: #0f0f0f;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.swiperPrev:hover,
+.swiperNext:hover {
+  background-color: #414141;
+}
+.swiperPagination {
+  left: 0 !important;
+  transform: translate(0) !important;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+:global(.swiper-pagination-bullet) {
+  background: #333333 !important;
+  width: 16px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
+:global(.swiper-pagination-bullet-active) {
+  background: #e50000 !important;
+  width: 21px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
+.aboutSlide {
+  width: 100% !important;
+}
+@media (max-width: 920px) {
+  .customControls {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .btnGroup {
+    flex-direction: column;
+  }
+  .exploreMovieImage {
+    height: 468px;
+  }
+  .filmText {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .previewButton {
+    width: 80%;
+    justify-content: center;
+  }
+}
