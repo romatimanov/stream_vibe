@@ -1,0 +1,23 @@
+.caseSlide {
+  width: 102px !important;
+}
+.castImage {
+  width: 102px;
+  height: 109px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.contentGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 102px;
+  height: 109px;
+}

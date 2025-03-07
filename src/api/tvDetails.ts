@@ -22,6 +22,7 @@ export interface Movie {
   director: { name: string }[];
   crew: any[];
   video_keys: { key: string }[];
+  seasons: any[];
 }
 
 export const tvDetailsApi = createApi({
@@ -70,6 +71,10 @@ export const tvDetailsApi = createApi({
         },
       }),
     }),
+    getSeasonDetails: builder.query({
+      query: ({ tvId, seasonNumber, language }) =>
+        `/tv/${tvId}/season/${seasonNumber}?api_key=${API_KEY}&language=${language}`,
+    }),
   }),
 });
 
@@ -78,4 +83,5 @@ export const {
   useGetCreditsTvQuery,
   useGetReviewsTvQuery,
   useGetVideoTvQuery,
+  useGetSeasonDetailsQuery,
 } = tvDetailsApi;

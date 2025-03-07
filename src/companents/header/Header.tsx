@@ -22,6 +22,10 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const pathname = usePathname();
+  const [active, setIsActive] = useState(true);
+  const handleClick = () => {
+    setIsActive(true);
+  };
 
   const menuItems = [
     { path: "/", label: { en: "Home", ru: "Главная" } },
@@ -54,15 +58,11 @@ export default function Header() {
     (state: RootState) => state.language.currentLanguage
   );
 
-  const { data, error, isLoading } = useGetSearchMoviesQuery(
+  const { data } = useGetSearchMoviesQuery(
     { query: searchQuery, language: currentLanguage },
     { skip: !searchQuery }
   );
-  const {
-    data: tv,
-    error: tvError,
-    isLoading: tvIsLoading,
-  } = useGetSearchTvQuery(
+  const { data: tv } = useGetSearchTvQuery(
     { query: searchQuery, language: currentLanguage },
     { skip: !searchQuery }
   );
@@ -71,10 +71,12 @@ export default function Header() {
 
   const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+    setIsActive(false);
   };
 
   const searchClose = () => {
     setSearchQuery("");
+    setIsActive(true);
   };
 
   const searchClick = () => {
@@ -120,12 +122,14 @@ export default function Header() {
     router.push(`/movies/${id}`);
     setSearchQuery("");
     setIsOpen(false);
+    document.body.classList.remove("hideScroll");
   };
 
   const handleLinkTvClick = (id: number) => {
     router.push(`/tv/${id}`);
     setSearchQuery("");
     setIsOpen(false);
+    document.body.classList.remove("hideScroll");
   };
 
   if (!isClient) return null;
@@ -157,7 +161,11 @@ export default function Header() {
         )}
         <nav className={styles.nav}>
           {search ? (
-            <div className={styles.searchContainer}>
+            <div
+              className={`${styles.searchContainer} ${
+                active ? styles.active : ""
+              }`}
+            >
               <input
                 type="text"
                 placeholder={
@@ -236,7 +244,11 @@ export default function Header() {
               </div>
             </div>
             <div className={styles.menuContent}>
-              <div className={styles.searchContainer}>
+              <div
+                className={`${styles.searchContainer} ${
+                  active ? styles.active : ""
+                }`}
+              >
                 <input
                   type="text"
                   placeholder={
@@ -260,7 +272,9 @@ export default function Header() {
                         key={movie.id}
                         className={styles.searchItem}
                         onClick={() =>
-                          movie.title ? handleLinkClick(movie.id) : null
+                          movie.title
+                            ? handleLinkClick(movie.id)
+                            : handleLinkTvClick(movie.id)
                         }
                       >
                         {movie.poster_path ? (
@@ -286,7 +300,7 @@ export default function Header() {
                   <li
                     key={path}
                     className={`${styles.navItem} ${
-                      pathname === path ? styles.active : ""
+                      pathname === path ? styles.activeMobile : ""
                     }`}
                     onClick={() => handleNavigation(path)}
                   >
@@ -313,7 +327,10 @@ export default function Header() {
               alt="search"
               width={18}
               height={18}
-              onClick={searchClick}
+              onClick={() => {
+                searchClick();
+                handleClick();
+              }}
             />
             <Image
               className={styles.icon}

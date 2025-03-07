@@ -59,6 +59,18 @@ li {
   line-height: clamp(16px, 2vw, 24px);
   color: #999999;
 }
+.global-title--small {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 700;
+  line-height: clamp(16px, 2vw, 20px);
+  color: #fff;
+}
+.global-text--small {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 500;
+  line-height: clamp(14px, 2vw, 18px);
+  color: #999999;
+}
 .global-text--content {
   display: flex;
   flex-direction: column;

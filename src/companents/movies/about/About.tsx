@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { useGetPopularMoviesQuery } from "@/api/previewApi";
 import { useSelector } from "react-redux";
 import "swiper/css";
@@ -85,9 +85,10 @@ export function About() {
               };
             }
           }}
-          modules={[Navigation, Pagination]}
+          modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}
           loop={true}
+          autoplay={{ delay: 5000 }}
           className={style.exploreSwiper}
         >
           {data?.results?.map((film) => (

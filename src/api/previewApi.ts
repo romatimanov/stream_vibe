@@ -23,15 +23,31 @@ export const previewApi = createApi({
     baseUrl: `${BASE_URL}/3/movie`,
   }),
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<MoviesResponse, string>({
-      query: (language) => ({
-        url: "/popular",
-        params: {
-          api_key: API_KEY,
-          language,
-          page: 1,
-        },
-      }),
+    getPopularMovies: builder.query<
+      MoviesResponse,
+      string | { language: string; page?: number }
+    >({
+      query: (arg) => {
+        if (typeof arg === "string") {
+          return {
+            url: "/popular",
+            params: {
+              api_key: API_KEY,
+              language: arg,
+              page: 1,
+            },
+          };
+        }
+
+        return {
+          url: "/popular",
+          params: {
+            api_key: API_KEY,
+            language: arg.language,
+            page: arg.page ?? 1,
+          },
+        };
+      },
     }),
   }),
 });

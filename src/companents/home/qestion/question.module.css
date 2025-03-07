@@ -40,13 +40,6 @@
   transform: rotate(90deg);
 }
 
-.accordionItem[data-state="open"] .accGroup::before {
-  display: none;
-}
-
-.accordionItem[data-state="open"] .accGroup::after {
-  transform: rotate(0);
-}
 .number {
   display: flex;
   flex-direction: column;
@@ -66,10 +59,6 @@
   border-radius: 8px;
 }
 
-.accordionItem {
-  position: relative;
-  transition: all 0.3s ease-in-out;
-}
 .accordionItem:not(:last-child)::after {
   content: "";
   position: absolute;
@@ -85,7 +74,17 @@
     #141414 82% 100%
   );
 }
+.accordionItem[data-state="open"] .accGroup::before {
+  display: none;
+}
 
+.accordionItem[data-state="open"] .accGroup::after {
+  transform: rotate(0);
+}
+.accordionItem {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
 .accordionTrigger {
   width: 100%;
   background: none;

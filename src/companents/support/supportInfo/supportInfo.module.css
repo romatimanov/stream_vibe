@@ -1,0 +1,9 @@
+.supportInfoImg {
+  border-radius: 10px;
+  border: 2px solid #262626;
+  overflow: hidden;
+  width: 533px;
+}
+.img {
+  width: 150px !important;
+}

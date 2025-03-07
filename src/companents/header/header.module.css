@@ -53,6 +53,7 @@
   cursor: pointer;
 }
 .search {
+  position: relative;
   border: none;
   outline: none;
   background: #1a1a1a;
@@ -60,8 +61,11 @@
   height: 40px;
   width: 100%;
   color: #bfbfbf;
+  padding: 0 10px;
 }
+
 .searchContainer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -70,6 +74,38 @@
   background: #1a1a1a;
   height: 40px;
   padding: 0 20px 0 40px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.searchContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 36, 36, 0.382),
+    transparent
+  );
+  transition: all 3s ease;
+}
+
+.searchContainer.active::after {
+  left: 100%;
+  animation: wave-gradient 1.5s linear infinite;
+}
+
+@keyframes wave-gradient {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .menuIcon {
