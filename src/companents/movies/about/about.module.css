@@ -117,6 +117,9 @@
 .aboutSlide {
   width: 100% !important;
 }
+.previewButton {
+  z-index: 100;
+}
 @media (max-width: 920px) {
   .customControls {
     display: none;

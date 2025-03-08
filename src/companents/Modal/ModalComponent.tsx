@@ -24,6 +24,15 @@ export default function ModalComponent({
       Modal.setAppElement(appElement);
     }
   }, []);
+
+  const trailer =
+    video?.results?.find(
+      (video: any) =>
+        video.name === "Official Trailer" ||
+        video.name === "Trailer" ||
+        video.name === "Original Trailer"
+    ) || video?.results?.[0];
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -54,7 +63,7 @@ export default function ModalComponent({
         <iframe
           width="100%"
           height="315"
-          src={`https://www.youtube.com/embed/${video?.results[0].key}`}
+          src={`https://www.youtube.com/embed/${trailer?.key}`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

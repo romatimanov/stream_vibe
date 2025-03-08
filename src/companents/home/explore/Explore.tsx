@@ -14,6 +14,7 @@ import Image from "next/image";
 import { fetchMovies } from "./fetchGenres";
 import { MovieBox } from "@/ui/MovieBox/MovieBox";
 import { RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 export default function Explore() {
   const currentLanguage = useSelector(
@@ -24,6 +25,7 @@ export default function Explore() {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
+  const route = useRouter();
 
   useEffect(() => {
     setLanguage(currentLanguage);
@@ -32,6 +34,7 @@ export default function Explore() {
   const { data, error, isLoading } = useGetGenresMoviesQuery(
     language || "ru-RUS"
   );
+  console.log(data);
 
   useEffect(() => {
     if (data?.genres) {
@@ -46,6 +49,10 @@ export default function Explore() {
       fetchAllMovies();
     }
   }, [data, language]);
+
+  const hanldeGenreClick = (id: number) => {
+    route.push(`/genres/${id}`);
+  };
 
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка загрузки</div>;
@@ -114,7 +121,10 @@ export default function Explore() {
       >
         {data?.genres?.map((genre) => (
           <SwiperSlide key={genre.id} className={style.exploreSlide}>
-            <MovieBox title={genre.name}>
+            <MovieBox
+              title={genre.name}
+              onClick={() => hanldeGenreClick(genre.id)}
+            >
               <div className={style.imgContent}>
                 {moviesByGenre[genre.id]?.map((movie) => (
                   <img

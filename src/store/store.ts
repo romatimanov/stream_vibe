@@ -14,6 +14,9 @@ import { tvPopularApi } from "@/api/tvPopular";
 import { tvTodayApi } from "@/api/tvToday";
 import { movieDetailsApi } from "@/api/movieDetail";
 import { tvDetailsApi } from "@/api/tvDetails";
+import { movieByGenreApi } from "@/api/movieByGenreApi";
+import { newsApi } from "@/api/newsApi";
+import { weatherApi } from "@/api/weatherApi";
 
 const rootReducer = combineReducers({
   [previewApi.reducerPath]: previewApi.reducer,
@@ -27,6 +30,9 @@ const rootReducer = combineReducers({
   [tvTodayApi.reducerPath]: tvTodayApi.reducer,
   [movieDetailsApi.reducerPath]: movieDetailsApi.reducer,
   [tvDetailsApi.reducerPath]: tvDetailsApi.reducer,
+  [movieByGenreApi.reducerPath]: movieByGenreApi.reducer,
+  [newsApi.reducerPath]: newsApi.reducer,
+  [weatherApi.reducerPath]: weatherApi.reducer,
   language: languageSlice.reducer,
 });
 
@@ -44,7 +50,10 @@ export const store = configureStore({
       tvTopApi.middleware,
       tvTodayApi.middleware,
       movieDetailsApi.middleware,
-      tvDetailsApi.middleware
+      tvDetailsApi.middleware,
+      movieByGenreApi.middleware,
+      newsApi.middleware,
+      weatherApi.middleware
     ),
 });
 

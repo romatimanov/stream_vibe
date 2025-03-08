@@ -34,7 +34,7 @@ export default function Header() {
       label: { en: "Movies & Shows", ru: "Фильмы и сериалы" },
     },
     { path: "/support", label: { en: "Support", ru: "Поддержка" } },
-    { path: "/subscriptions", label: { en: "Subscriptions", ru: "Подписки" } },
+    { path: "/news", label: { en: "News", ru: "Новости" } },
   ];
 
   const handleNavigation = (path: string) => {

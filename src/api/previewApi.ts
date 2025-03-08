@@ -11,6 +11,10 @@ export interface Movie {
   poster_path: string;
   original_title?: string;
   overview?: string;
+  genre_ids?: number[];
+  backdrop_path?: string;
+  vote_average?: number;
+  vote_count?: number;
 }
 
 export interface MoviesResponse {

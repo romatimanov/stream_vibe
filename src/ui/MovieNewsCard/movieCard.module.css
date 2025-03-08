@@ -1,0 +1,68 @@
+.movieCard {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  border: 2px solid #1f1f1f;
+  transition: all 0.3s ease-in-out;
+}
+.movieCard:hover {
+  background-color: #373737bf;
+  border-color: #606060;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #e5e5e5;
+}
+.poster {
+  border-radius: 5px;
+  min-width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 32px;
+  background-color: #141414;
+  border: 1px solid #262626;
+  width: max-content;
+  font-size: 16px;
+  color: #999;
+}
+.readMore {
+  font-size: 16px;
+  font-weight: 700;
+  color: #999;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+.readMore:hover {
+  color: rgb(248, 15, 15);
+}

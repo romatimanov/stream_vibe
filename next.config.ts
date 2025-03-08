@@ -12,8 +12,11 @@ const nextConfig = {
               script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               font-src 'self' https://fonts.gstatic.com data:;
-              img-src 'self' https://image.tmdb.org data: https://i.ytimg.com;
-              connect-src 'self' https://api.themoviedb.org https://www.youtube.com https://www.google.com https://www.youtube-nocookie.com;
+              img-src * data: blob:;
+              connect-src 'self' https://api.themoviedb.org https://www.youtube.com 
+                          https://www.google.com https://www.youtube-nocookie.com 
+                          https://newsapi.org https://api.openweathermap.org 
+                          https://api.weatherapi.com;
               frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com;
               media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;
             `.replace(/\s{2,}/g, " "),
@@ -23,16 +26,7 @@ const nextConfig = {
     ];
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "image.tmdb.org",
-        pathname: "/t/p/**",
-      },
-    ],
-  },
-  experimental: {
-    appDir: true,
+    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
 };
 

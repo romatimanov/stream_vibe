@@ -18,7 +18,7 @@ export default function StartWatch() {
   if (!currentLanguage) return;
 
   return (
-    <section className={`${style.startWatch}`}>
+    <section className={`${style.startWatch} container`}>
       <div className={style.trial}>
         <div className={style.trialContent}>
           <div className="global-text--content">

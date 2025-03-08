@@ -1,9 +1,152 @@
+.supportInfo {
+  margin-bottom: 60px;
+}
+.supportInfoContent {
+  overflow: hidden;
+}
 .supportInfoImg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 20px;
   border-radius: 10px;
   border: 2px solid #262626;
   overflow: hidden;
-  width: 533px;
+  width: 100%;
+  height: 500px;
+  justify-content: center;
 }
+
 .img {
-  width: 150px !important;
+  width: 135px !important;
+  height: 168px !important;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.supportInfoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.supportInfoWrapper {
+  display: grid;
+  grid-template-columns: 533px 1fr;
+  gap: 80px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.fromContent {
+  background-color: #0f0f0f;
+  border: 2px solid #262626;
+  border-radius: 10px;
+  padding: 50px;
+}
+.inputGroupWrapper {
+  display: flex;
+  gap: 50px;
+}
+.inputGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input {
+  width: 100% !important;
+  background-color: #141414 !important;
+  border: 1px solid #262626 !important;
+  border-radius: 10px !important;
+  padding: 20px;
+  font-size: clamp(14px, 2vw, 18px) !important;
+  line-height: clamp(18px, 2vw, 24px) !important;
+  font-weight: 400 !important;
+  color: #999 !important;
+  outline: none;
+}
+
+.label {
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+}
+.textarea {
+  height: 163px;
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.inputCheck {
+  appearance: none;
+  min-width: 20px;
+  height: 20px;
+  border: 2px solid #262626;
+  border-radius: 5px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.inputCheck:checked {
+  background-color: #999;
+  border-color: #999;
+}
+
+.inputCheck:checked::after {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+.error {
+  border-color: #e50000 !important;
+}
+@media (max-width: 1200px) {
+  .inputGroupWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .supportInfoWrapper {
+    gap: 40px;
+  }
+  .supportInfoContent {
+    gap: 20px;
+  }
+  .form {
+    gap: 20px;
+  }
+  .fromContent {
+    padding: 20px;
+  }
+}
+@media (max-width: 920px) {
+  .supportInfoWrapper {
+    grid-template-columns: 1fr;
+  }
+  .supportInfoImg {
+    height: 400px;
+  }
+  .checkbox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .img {
+    width: 97px !important;
+    height: 121px !important;
+  }
 }

@@ -13,6 +13,8 @@ import style from "./about.module.css";
 import { RootState } from "@/store/store";
 import { Button } from "@/ui/Button/Button";
 import { useRouter } from "next/navigation";
+import { useGetVideoMoviesQuery } from "@/api/movieDetail";
+import ModalComponent from "@/companents/Modal/ModalComponent";
 
 export function About() {
   const currentLanguage = useSelector(
@@ -22,8 +24,13 @@ export function About() {
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   const [moviesByGenre, setMoviesByGenre] = useState<Record<number, any[]>>({});
-  const router = useRouter();
+  const [currentMovieId, setCurrentMovieId] = useState<number | null>(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
+  const { data: video } = useGetVideoMoviesQuery({
+    id: Number(currentMovieId),
+    language: currentLanguage,
+  });
 
   useEffect(() => {
     if (data?.results) {
@@ -34,11 +41,10 @@ export function About() {
         }, {} as Record<number, any[]>)
       );
     }
+    if (!currentMovieId && data && data.results.length > 0) {
+      setCurrentMovieId(data.results[0].id);
+    }
   }, [data]);
-
-  const handleRoute = (id: number) => {
-    router.push(`/movies/${id}`);
-  };
 
   if (error) return <div>Ошибка загрузки</div>;
   return (
@@ -90,13 +96,16 @@ export function About() {
           loop={true}
           autoplay={{ delay: 5000 }}
           className={style.exploreSwiper}
+          onSlideChange={(swiper) => {
+            const activeIndex = swiper.realIndex;
+            const currentFilm = data?.results[activeIndex];
+            if (currentFilm) {
+              setCurrentMovieId(currentFilm.id);
+            }
+          }}
         >
           {data?.results?.map((film) => (
-            <SwiperSlide
-              key={film.id}
-              className={style.aboutSlide}
-              onClick={() => handleRoute(film.id)}
-            >
+            <SwiperSlide key={film.id} className={style.aboutSlide}>
               <div className={style.aboutFilm}>
                 <div className="global-text--content">
                   <h1 className="global-title">{film.title}</h1>
@@ -105,7 +114,10 @@ export function About() {
                   </h2>
                 </div>
                 <div className={style.btnGroup}>
-                  <Button styles={style.previewButton}>
+                  <Button
+                    styles={style.previewButton}
+                    onClick={() => setModalIsOpen(true)}
+                  >
                     <Image src="/play.png" alt="play" width={17} height={19} />
                     {currentLanguage === "en-US"
                       ? "Play Now"
@@ -153,6 +165,12 @@ export function About() {
           ))}
         </Swiper>
       </div>
+      <ModalComponent
+        video={video}
+        setModalIsOpen={setModalIsOpen}
+        modalIsOpen={modalIsOpen}
+        currentLanguage={currentLanguage}
+      />
     </section>
   );
 }

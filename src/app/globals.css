@@ -78,3 +78,26 @@ li {
   color: #999999;
   z-index: 10;
 }
+
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+}
+.react-tel-input .selected-flag {
+  background-color: transparent !important;
+}
+.country-list {
+  background-color: transparent !important;
+}
+.country:hover {
+  color: #141414 !important;
+}
+.highlight {
+  color: #141414 !important;
+}
+.react-tel-input .form-control {
+  height: auto !important;
+}
+.react-tel-input .flag {
+  height: 10px !important;
+}
