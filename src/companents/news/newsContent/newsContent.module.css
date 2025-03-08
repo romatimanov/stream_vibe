@@ -1,4 +1,7 @@
 .news {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   margin-bottom: 60px;
 }
 .aside {
@@ -12,8 +15,6 @@
   display: flex;
   align-items: flex-start;
   gap: 30px;
-  overflow: visible;
-  min-height: 100vh; /* Контейнер должен быть достаточно высоким */
 }
 
 .newsContent {
@@ -38,4 +39,14 @@
 }
 .loadMore:hover {
   color: #fff;
+}
+@media (max-width: 920px) {
+  .content {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column-reverse;
+  }
 }

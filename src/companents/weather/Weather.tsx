@@ -29,7 +29,6 @@ export function Weather() {
       }).format(now);
       setTime(formattedTime);
 
-      // ✅ Определяем класс (день или ночь)
       if (hours >= 6 && hours < 18) {
         setTimeClass(style.day);
       } else {
@@ -53,21 +52,21 @@ export function Weather() {
           });
         },
         (err) => {
-          setError(
-            "Не удалось получить геолокацию. Используйте поиск по городу."
-          );
-          console.error("Ошибка геолокации:", err);
+          setCoords({ lat: 59.9343, lon: 30.3351 });
         }
       );
     } else {
-      setError("Геолокация не поддерживается в вашем браузере.");
+      setError(
+        "Геолокация не поддерживается в вашем браузере, используется Санкт-Петербург."
+      );
+      setCoords({ lat: 59.9343, lon: 30.3351 });
     }
   }, []);
 
   const { data, isLoading } = useGetWeatherByCoordsQuery(
     coords
       ? { lat: coords.lat, lon: coords.lon, language: langCode }
-      : { lat: 0, lon: 0, language: langCode },
+      : { lat: 59.9343, lon: 30.3351, language: langCode }, // Санкт-Петербург по умолчанию
     { skip: !coords }
   );
 
@@ -78,28 +77,36 @@ export function Weather() {
       {data && coords && (
         <div className={style.content}>
           <div className={style.header}>
-            <h3 className={style.city}>
-              {data.location.name}, {data.location.country}
-            </h3>
+            <div>
+              <h3 className={style.city}>
+                {data.location.name}, {data.location.country}
+              </h3>
+              <p>{data.current.condition.text}</p>
+            </div>
             <p className={style.time}>{time}</p>
           </div>
-          <p>{data.current.condition.text}</p>
-          <p>
-            🌡 {currentLanguage === "en-US" ? "Temperature" : "Температура"}{" "}
-            {data.current.temp_c}°C
-          </p>
-          <p>
-            🌡 {currentLanguage === "en-US" ? "Feels Like" : "Ощущается как"}{" "}
-            {data.current.feelslike_c}°C
-          </p>
-          <p>
-            💨 {currentLanguage === "en-US" ? "Wind" : "Ветер"}{" "}
-            {data.current.wind_kph} км/ч
-          </p>
-          <p>
-            💧 {currentLanguage === "en-US" ? "Humidity" : "Влажность"}{" "}
-            {data.current.humidity}%
-          </p>
+          <div className={style.info}>
+            <div className={style.otherInfo}>
+              <p>
+                🌡 {currentLanguage === "en-US" ? "Temperature" : "Температура"}{" "}
+                {data.current.temp_c}°C
+              </p>
+              <p>
+                🌡 {currentLanguage === "en-US" ? "Feels Like" : "Ощущается как"}{" "}
+                {data.current.feelslike_c}°C
+              </p>
+            </div>
+            <div className={style.otherInfo}>
+              <p>
+                💨 {currentLanguage === "en-US" ? "Wind" : "Ветер"}{" "}
+                {data.current.wind_kph} км/ч
+              </p>
+              <p>
+                💧 {currentLanguage === "en-US" ? "Humidity" : "Влажность"}{" "}
+                {data.current.humidity}%
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>
