@@ -17,6 +17,11 @@ import { tvDetailsApi } from "@/api/tvDetails";
 import { movieByGenreApi } from "@/api/movieByGenreApi";
 import { newsApi } from "@/api/newsApi";
 import { weatherApi } from "@/api/weatherApi";
+import { exchangeApi } from "@/api/exchangeApi";
+import { addWatchApi } from "@/api/addWatchApi";
+import { watchListApi } from "@/api/watchListApi";
+import { addFavoriteApi } from "@/api/addFavoriteApi";
+import { favoriteListApi } from "@/api/favoriteListApi";
 
 const rootReducer = combineReducers({
   [previewApi.reducerPath]: previewApi.reducer,
@@ -33,6 +38,11 @@ const rootReducer = combineReducers({
   [movieByGenreApi.reducerPath]: movieByGenreApi.reducer,
   [newsApi.reducerPath]: newsApi.reducer,
   [weatherApi.reducerPath]: weatherApi.reducer,
+  [exchangeApi.reducerPath]: exchangeApi.reducer,
+  [addWatchApi.reducerPath]: addWatchApi.reducer,
+  [watchListApi.reducerPath]: watchListApi.reducer,
+  [addFavoriteApi.reducerPath]: addFavoriteApi.reducer,
+  [favoriteListApi.reducerPath]: favoriteListApi.reducer,
   language: languageSlice.reducer,
 });
 
@@ -53,7 +63,12 @@ export const store = configureStore({
       tvDetailsApi.middleware,
       movieByGenreApi.middleware,
       newsApi.middleware,
-      weatherApi.middleware
+      weatherApi.middleware,
+      exchangeApi.middleware,
+      addWatchApi.middleware,
+      watchListApi.middleware,
+      addFavoriteApi.middleware,
+      favoriteListApi.middleware
     ),
 });
 

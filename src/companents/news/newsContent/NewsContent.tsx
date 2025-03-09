@@ -8,18 +8,20 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import style from "./newsContent.module.css";
 import { Weather } from "@/companents/weather/Weather";
+import { Loader } from "@/companents/loader/Loader";
+import { useGetLatestRatesQuery } from "@/api/exchangeApi";
 
 export function NewsContent() {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
-
+  const { data: rates } = useGetLatestRatesQuery("USD");
   const langCode = currentLanguage.split("-")[0];
-
+  const [isExpanded, setIsExpanded] = useState("");
   const [page, setPage] = useState(1);
   const [articles, setArticles] = useState<NewsArticle[]>([]);
 
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["movieNews", langCode, page],
     queryFn: async () => {
       const response = await fetch(
@@ -29,6 +31,20 @@ export function NewsContent() {
       return response.json();
     },
   });
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (footer) {
+      footer.style.display = "block";
+      footer.style.visibility = "visible";
+    }
+    console.log(footer);
+  }, []);
+
+  useEffect(() => {
+    refetch();
+    setArticles([]);
+    setPage(1);
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (data?.articles && data.articles.length > 0) {
@@ -42,15 +58,25 @@ export function NewsContent() {
     }
   }, [data]);
 
+  const searchExpanded = (value: string) => {
+    setIsExpanded(value);
+  };
+
+  const filteredRates = rates
+    ? Object.entries(rates.rates).filter(([currency]) =>
+        currency.toLowerCase().includes(isExpanded.toLowerCase())
+      )
+    : [];
+
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
   if (error) {
-    return <p>Ошибка загрузки: {JSON.stringify(error)}</p>;
+    return <p>Ошибка загрузки:</p>;
   }
 
-  if (isLoading && page === 1) return <p>Загрузка...</p>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className={`${style.news} container`}>
@@ -81,7 +107,35 @@ export function NewsContent() {
               </button>
             )}
         </aside>
-        <Weather />
+        <div className={style.dopContent}>
+          <Weather />
+          <div className={style.ratesContent}>
+            <ul className={style.rates}>
+              <div className={style.search}>
+                <input
+                  type="text"
+                  value={isExpanded}
+                  onChange={(e) => searchExpanded(e.target.value)}
+                  placeholder={
+                    currentLanguage === "en-US"
+                      ? "Search currency"
+                      : "Поиск валюты"
+                  }
+                  className={style.input}
+                />
+              </div>
+              {rates &&
+                Object.entries(filteredRates).map(([currency, rate]) => (
+                  <li key={currency}>
+                    <div className={style.rate}>
+                      <p className={style.currency}>{rate[0]}</p>
+                      <p className={style.currency}>{rate[1]}</p>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

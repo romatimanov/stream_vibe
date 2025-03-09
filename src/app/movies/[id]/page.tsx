@@ -21,6 +21,7 @@ import { Cast } from "@/companents/showAndMovies/cast/Cast";
 import { Review } from "@/companents/showAndMovies/review/Review";
 import { InfoMovie } from "@/companents/showAndMovies/infoMovie/InfoMovie";
 import ModalComponent from "@/companents/Modal/ModalComponent";
+import { Loader } from "@/companents/loader/Loader";
 
 export default function Movie() {
   const params = useParams();
@@ -57,7 +58,7 @@ export default function Movie() {
     (person) => person.known_for_department === "Directing"
   );
 
-  if (isLoading) return <div className={style.loading}>Загрузка...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Ошибка при загрузке фильма</p>;
 
   return (

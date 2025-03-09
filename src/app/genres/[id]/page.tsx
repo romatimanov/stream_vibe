@@ -8,6 +8,7 @@ import style from "./genres.module.css";
 import { MovieCardGenre } from "@/ui/MovieCardGenre/MovieCardGenre";
 import Image from "next/image";
 import { useGetMoviesByGenreQuery } from "@/api/movieByGenreApi";
+import { Loader } from "@/companents/loader/Loader";
 
 export default function Genre() {
   const params = useParams();
@@ -34,7 +35,7 @@ export default function Genre() {
     route.push(`/movies/${id}`);
   };
 
-  if (isLoading) return <p>Загрузка...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Ошибка загрузки</p>;
 
   return (

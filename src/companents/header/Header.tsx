@@ -11,6 +11,8 @@ import { AppDispatch, RootState } from "@/store/store";
 import { setInitialActivePage } from "@/store/slice/activePage";
 import { setLanguage } from "@/store/slice/languageSlice";
 import { usePathname, useRouter } from "next/navigation";
+import { Button } from "@/ui/Button/Button";
+import ModalAuth from "../ModalAuth/ModalAuth";
 
 export default function Header() {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,10 +24,12 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const pathname = usePathname();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [active, setIsActive] = useState(true);
   const handleClick = () => {
     setIsActive(true);
   };
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const menuItems = [
     { path: "/", label: { en: "Home", ru: "Главная" } },
@@ -44,9 +48,30 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      const checkLocal = localStorage.getItem("sessionId");
+      setSessionId(checkLocal);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
       const storedPage = localStorage.getItem("page") || "home";
       dispatch(setInitialActivePage(storedPage));
     }
+  }, []);
+
+  useEffect(() => {
+    const updateSession = () => {
+      const checkLocal = localStorage.getItem("sessionId");
+      setSessionId(checkLocal);
+    };
+
+    updateSession();
+    window.addEventListener("storage", updateSession);
+
+    return () => {
+      window.removeEventListener("storage", updateSession);
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -346,9 +371,23 @@ export default function Header() {
               styles={customStyles}
               components={{ DropdownIndicator: customDropdownIndicator }}
             />
+            <Button
+              onClick={() =>
+                sessionId ? router.push("/dashboard") : setModalIsOpen(true)
+              }
+            >
+              {!sessionId
+                ? currentLanguage === "en-US"
+                  ? "Sign In"
+                  : "Войти"
+                : currentLanguage === "en-US"
+                ? "Profile"
+                : "Профиль"}
+            </Button>
           </div>
         )}
       </div>
+      <ModalAuth setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} />
     </header>
   );
 }

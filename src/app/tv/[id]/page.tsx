@@ -23,6 +23,7 @@ import ModalComponent from "@/companents/Modal/ModalComponent";
 import { SeasonDetails } from "@/companents/showAndMovies/seasonDetails/SeasonDetails";
 import * as Accordion from "@radix-ui/react-accordion";
 import Image from "next/image";
+import { Loader } from "@/companents/loader/Loader";
 
 export default function Tv() {
   const params = useParams();
@@ -62,7 +63,7 @@ export default function Tv() {
     (person) => person.known_for_department === "Directing"
   );
 
-  if (isLoading) return <div className={style.loading}>Загрузка...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Ошибка при загрузке фильма</p>;
 
   return (

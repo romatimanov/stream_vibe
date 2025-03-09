@@ -15,6 +15,7 @@ import { fetchMovies } from "./fetchGenres";
 import { MovieBox } from "@/ui/MovieBox/MovieBox";
 import { RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/companents/loader/Loader";
 
 export default function Explore() {
   const currentLanguage = useSelector(
@@ -34,7 +35,6 @@ export default function Explore() {
   const { data, error, isLoading } = useGetGenresMoviesQuery(
     language || "ru-RUS"
   );
-  console.log(data);
 
   useEffect(() => {
     if (data?.genres) {
@@ -54,7 +54,7 @@ export default function Explore() {
     route.push(`/genres/${id}`);
   };
 
-  if (isLoading) return <div>Загрузка...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
 
   return (

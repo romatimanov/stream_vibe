@@ -286,6 +286,7 @@
   border-radius: 10px;
   object-fit: cover;
 }
+
 @media (max-width: 920px) {
   .movieInfo {
     grid-template-columns: 1fr;

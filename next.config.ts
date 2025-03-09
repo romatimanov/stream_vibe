@@ -13,13 +13,16 @@ const nextConfig = {
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               font-src 'self' https://fonts.gstatic.com data:;
               img-src * data: blob:;
-              connect-src 'self' https://api.themoviedb.org https://www.youtube.com 
-                          https://www.google.com https://www.youtube-nocookie.com 
-                          https://newsapi.org https://api.openweathermap.org 
-                          https://api.weatherapi.com;
+              connect-src 'self' https://api.themoviedb.org https://www.youtube.com
+                          https://www.google.com https://www.youtube-nocookie.com
+                          https://newsapi.org https://api.openweathermap.org
+                          https://api.weatherapi.com https://eodhd.com wss://ws.eodhistoricaldata.com
+                          https://openexchangerates.org;
               frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com;
               media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;
-            `.replace(/\s{2,}/g, " "),
+            `
+              .replace(/\s{2,}/g, " ")
+              .trim(),
           },
         ],
       },

@@ -5,9 +5,10 @@ type MovieCardProps = {
   img: string;
   rating?: number;
   view?: number;
+  onClick?: () => void;
 };
 
-export function MovieCard({ img, rating, view }: MovieCardProps) {
+export function MovieCard({ img, rating, view, onClick }: MovieCardProps) {
   function formatViews(view: number) {
     if (view >= 1000) {
       return (view / 1000).toFixed(1) + "K";
@@ -16,7 +17,7 @@ export function MovieCard({ img, rating, view }: MovieCardProps) {
   }
 
   return (
-    <div className={style.movieCard}>
+    <div className={style.movieCard} onClick={onClick}>
       <img
         className={style.poster}
         src={`https://image.tmdb.org/t/p/w780/${img}`}

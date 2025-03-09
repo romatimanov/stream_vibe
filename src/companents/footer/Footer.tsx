@@ -8,7 +8,7 @@ export default function Footer() {
 
   if (!currentLanguage) return;
   return (
-    <footer className={`${style.footer}`}>
+    <div className={`${style.footer}`}>
       <div className="container">
         <div className={style.footerContent}>
           <div className={style.footerMenu}>
@@ -178,6 +178,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }

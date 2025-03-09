@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { Button } from "@/ui/Button/Button";
+import { Loader } from "@/companents/loader/Loader";
 
 export default function Preview() {
   const currentLanguage = useSelector(
@@ -15,7 +16,7 @@ export default function Preview() {
 
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
 
-  if (isLoading) return <div>Загрузка...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
 
   return (

@@ -2,14 +2,17 @@
   position: sticky;
   top: 20;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: background 0.3s ease-in-out;
   overflow: hidden;
   height: max-content;
   width: 400px;
   flex-shrink: 0;
 }
-
+.city {
+  font-size: 20px;
+  font-weight: 600;
+}
 .day {
   background: linear-gradient(to top, #87ceeb, #ffffff);
   color: #222;
@@ -18,6 +21,13 @@
 .night {
   background: linear-gradient(to top, #2c3e50, #000000);
   color: #ecf0f1;
+}
+.day > .city {
+  color: #000000;
+}
+
+.night > .city {
+  color: #cccbcb;
 }
 
 @keyframes moveClouds {
@@ -39,11 +49,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.city {
-  font-size: 20px;
-  font-weight: 600;
-  color: #cccbcb;
-}
+
 .info,
 .otherInfo {
   display: flex;

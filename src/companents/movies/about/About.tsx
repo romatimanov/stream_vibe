@@ -12,9 +12,15 @@ import Image from "next/image";
 import style from "./about.module.css";
 import { RootState } from "@/store/store";
 import { Button } from "@/ui/Button/Button";
-import { useRouter } from "next/navigation";
 import { useGetVideoMoviesQuery } from "@/api/movieDetail";
 import ModalComponent from "@/companents/Modal/ModalComponent";
+import { Loader } from "@/companents/loader/Loader";
+import { useAddWatchMutation } from "@/api/addWatchApi";
+import { useGetWatchMoviesQuery } from "@/api/watchListApi";
+import { useAddWatch } from "@/hook/useAddWatch";
+import { useAddFavoriteMutation } from "@/api/addFavoriteApi";
+import { useAddFavorite } from "@/hook/useAddFavorite";
+import { useGetFavoriteMoviesQuery } from "@/api/favoriteListApi";
 
 export function About() {
   const currentLanguage = useSelector(
@@ -26,11 +32,30 @@ export function About() {
   const [moviesByGenre, setMoviesByGenre] = useState<Record<number, any[]>>({});
   const [currentMovieId, setCurrentMovieId] = useState<number | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [addWatchMutation] = useAddWatchMutation();
+  const [addFavoriteMutation] = useAddFavoriteMutation();
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
+  const [isWatch, setIsWatch] = useState(new Set<number>());
+  const [isFavorite, setIsFavorite] = useState(new Set<number>());
   const { data: video } = useGetVideoMoviesQuery({
     id: Number(currentMovieId),
     language: currentLanguage,
   });
+
+  const accountId =
+    typeof window !== "undefined"
+      ? localStorage.getItem("accountId") || ""
+      : "";
+
+  const { data: watch, refetch } = useGetWatchMoviesQuery({
+    language: currentLanguage,
+    account_id: accountId,
+  });
+  const { data: favorite, refetch: refetchFavorite } =
+    useGetFavoriteMoviesQuery({
+      language: currentLanguage,
+      account_id: accountId,
+    });
 
   useEffect(() => {
     if (data?.results) {
@@ -46,6 +71,19 @@ export function About() {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (watch?.results) {
+      setIsWatch(new Set(watch.results.map((film) => film.id)));
+    }
+  }, [watch]);
+
+  useEffect(() => {
+    if (favorite?.results) {
+      setIsFavorite(new Set(favorite.results.map((film) => film.id)));
+    }
+  }, [favorite]);
+
+  if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
   return (
     <section className={`${style.about} container`}>
@@ -124,29 +162,53 @@ export function About() {
                       : "Смотреть сейчас"}
                   </Button>
                   <div className={style.filmButtons}>
-                    <button className={style.filmButton}>
-                      <Image
-                        src="/plus.png"
-                        alt="plus"
-                        width={17}
-                        height={19}
-                      />
+                    <button
+                      className={style.filmButton}
+                      onClick={() =>
+                        useAddWatch(film.id, addWatchMutation, refetch)
+                      }
+                    >
+                      {!isWatch.has(film.id) ? (
+                        <Image
+                          src="/plus.png"
+                          alt="watched"
+                          width={14}
+                          height={14}
+                        />
+                      ) : (
+                        <Image
+                          src="/plus-active.svg"
+                          alt="watched"
+                          width={14}
+                          height={14}
+                        />
+                      )}
                     </button>
-                    <button className={style.filmButton}>
-                      <Image
-                        src="/like.png"
-                        alt="like"
-                        width={17}
-                        height={19}
-                      />
-                    </button>
-                    <button className={style.filmButton}>
-                      <Image
-                        src="/volume.png"
-                        alt="volume"
-                        width={17}
-                        height={19}
-                      />
+                    <button
+                      className={style.filmButton}
+                      onClick={() =>
+                        useAddFavorite(
+                          film.id,
+                          addFavoriteMutation,
+                          refetchFavorite
+                        )
+                      }
+                    >
+                      {!isFavorite.has(film.id) ? (
+                        <Image
+                          src="/like.png"
+                          alt="watched"
+                          width={14}
+                          height={14}
+                        />
+                      ) : (
+                        <Image
+                          src="/like-active.svg"
+                          alt="watched"
+                          width={14}
+                          height={14}
+                        />
+                      )}
                     </button>
                   </div>
                 </div>

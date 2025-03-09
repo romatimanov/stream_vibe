@@ -23,6 +23,7 @@ import { Upcoming } from "../upcoming/Upcoming";
 import { TvPopular } from "../tvPopular/TvPoplar";
 import { TopSeries } from "../topSeries/TopSeries";
 import { Airing } from "../airing/Airing";
+import { Loader } from "@/companents/loader/Loader";
 
 export function Films() {
   const currentLanguage = useCurrentLanguage();
@@ -61,7 +62,7 @@ export function Films() {
   const handleRoute = (id: number) => router.push(`/movies/${id}`);
   const handleRouteTv = (id: number) => router.push(`/tv/${id}`);
 
-  if (isLoading) return <div>Загрузка...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
   if (!currentLanguage) return null;
 

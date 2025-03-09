@@ -11,6 +11,7 @@ import * as z from "zod";
 import { Button } from "@/ui/Button/Button";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { Loader } from "@/companents/loader/Loader";
 
 const schema = z.object({
   firstName: z.string().min(2, "Имя должно быть не короче 2 символов"),
@@ -52,11 +53,12 @@ export function SupportInfo() {
     setCurrentLanguage(languageFromStore);
   }, [languageFromStore]);
 
-  const { data } = useGetPopularMoviesQuery({
+  const { data, isLoading } = useGetPopularMoviesQuery({
     language: currentLanguage ?? "en-US",
     page: 2,
   });
 
+  if (isLoading) return <Loader />;
   if (!currentLanguage) return null;
 
   return (
