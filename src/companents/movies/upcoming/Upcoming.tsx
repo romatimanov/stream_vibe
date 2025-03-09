@@ -11,34 +11,23 @@ type UpcomingProps = {
   handleRoute: (id: number) => void;
 } & MovieProps;
 
-export function Upcoming({
-  upcoming,
-  currentLanguage,
-  genres,
-  customControls,
-  swiperPrev,
-  swiperNext,
-  swiperPagination,
-  handleRoute,
-  exploreSwiper,
-  exploreSlide,
-}: UpcomingProps) {
+export function Upcoming({ upcoming, handleRoute, ...props }: UpcomingProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
       {" "}
-      <div className={genres}>
+      <div className={props.genres}>
         <h2 className="global-title">
-          {currentLanguage == "en-US" ? "Upcoming" : "Скоро"}
+          {props.currentLanguage == "en-US" ? "Upcoming" : "Скоро"}
         </h2>
-        <div className={customControls}>
-          <button ref={navigationPrevRef} className={swiperPrev}>
+        <div className={props.customControls}>
+          <button ref={navigationPrevRef} className={props.swiperPrev}>
             <Image src={"/prev.png"} alt="btn" width={21} height={17} />
           </button>
-          <div ref={paginationRef} className={swiperPagination}></div>
-          <button ref={navigationNextRef} className={swiperNext}>
+          <div ref={paginationRef} className={props.swiperPagination}></div>
+          <button ref={navigationNextRef} className={props.swiperNext}>
             <Image src={"/next.png"} alt="btn" width={21} height={17} />
           </button>
         </div>
@@ -78,13 +67,13 @@ export function Upcoming({
         spaceBetween={20}
         slidesPerView={"auto"}
         loop={true}
-        className={exploreSwiper}
+        className={props.exploreSwiper}
       >
         {upcoming?.results?.map((film: any) => (
           <SwiperSlide
             onClick={() => handleRoute(film.id)}
             key={film.id}
-            className={exploreSlide}
+            className={props.exploreSlide}
           >
             <MovieCard
               img={film.backdrop_path}

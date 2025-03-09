@@ -8,8 +8,10 @@
   flex-direction: column;
   gap: 30px;
   border: 2px solid #1f1f1f;
+  cursor: pointer;
 }
 
+.device::before,
 .device::after {
   content: "";
   position: absolute;
@@ -17,9 +19,34 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgb(229, 0, 0);
-  background: linear-gradient(-142deg, #e50000 -181%, #0000 32%);
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
 }
+
+.device::before {
+  background: linear-gradient(-142deg, #e50000 -181%, #0000 32%);
+  opacity: 1;
+}
+
+.device::after {
+  background: linear-gradient(-142deg, #e50000 -152%, #0000 54%);
+  opacity: 0;
+}
+
+.device:hover::after {
+  opacity: 1;
+}
+
+.device:hover::before {
+  opacity: 0;
+}
+
+.device > * {
+  position: relative;
+  z-index: 1;
+}
+
 .deviceContent {
   display: flex;
   align-items: center;

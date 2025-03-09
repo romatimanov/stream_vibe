@@ -61,6 +61,7 @@ export function Films() {
   const handleClickActive = (index: number) => setActiveBtn(index);
   const handleRoute = (id: number) => router.push(`/movies/${id}`);
   const handleRouteTv = (id: number) => router.push(`/tv/${id}`);
+  const handleRouteGenre = (id: number) => router.push(`/genres/${id}`);
 
   if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
@@ -72,6 +73,8 @@ export function Films() {
         {...data}
         currentLanguage={currentLanguage}
         handleRoute={handleRouteFn}
+        handleRouteTv={handleRouteFn}
+        handleRouteGenre={handleRouteFn}
         {...swiperStyles}
       />
     </div>
@@ -99,7 +102,7 @@ export function Films() {
             <Button styles={style.btn}>
               {currentLanguage === "en-US" ? "Movies" : "Фильмы"}
             </Button>
-            {renderContent({ data: genres }, Genres, handleRoute)}
+            {renderContent({ data: genres }, Genres, handleRouteGenre)}
             {renderContent({ playing }, Playning, handleRoute)}
             {renderContent({ top }, TopMovie, handleRoute)}
             {renderContent({ upcoming }, Upcoming, handleRoute)}

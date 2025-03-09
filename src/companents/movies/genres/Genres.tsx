@@ -10,22 +10,13 @@ import { MovieProps } from "../types";
 
 type GenreProps = {
   data: any;
-  handleRoute: (id: number) => void;
+  handleRouteGenre: (id: number) => void;
 } & MovieProps;
 
-export function Genres({
-  data,
-  currentLanguage,
-  handleRoute,
-  customControls,
-  swiperPrev,
-  swiperNext,
-  swiperPagination,
-  exploreSwiper,
-  exploreSlide,
-  genres,
-}: GenreProps) {
-  const [language, setLanguage] = useState<string | null>(currentLanguage);
+export function Genres({ data, handleRouteGenre, ...props }: GenreProps) {
+  const [language, setLanguage] = useState<string | null>(
+    props.currentLanguage
+  );
   const [moviesByGenre, setMoviesByGenre] = useState<Record<number, any[]>>({});
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
@@ -46,16 +37,16 @@ export function Genres({
   }, [data, language]);
   return (
     <>
-      <div className={genres}>
+      <div className={props.genres}>
         <h2 className="global-title">
-          {currentLanguage == "en-US" ? "Our Genres" : "Наши Жанры"}
+          {language == "en-US" ? "Our Genres" : "Наши Жанры"}
         </h2>
-        <div className={customControls}>
-          <button ref={navigationPrevRef} className={swiperPrev}>
+        <div className={props.customControls}>
+          <button ref={navigationPrevRef} className={props.swiperPrev}>
             <Image src={"/prev.png"} alt="btn" width={21} height={17} />
           </button>
-          <div ref={paginationRef} className={swiperPagination}></div>
-          <button ref={navigationNextRef} className={swiperNext}>
+          <div ref={paginationRef} className={props.swiperPagination}></div>
+          <button ref={navigationNextRef} className={props.swiperNext}>
             <Image src={"/next.png"} alt="btn" width={21} height={17} />
           </button>
         </div>
@@ -95,13 +86,13 @@ export function Genres({
         spaceBetween={20}
         slidesPerView={"auto"}
         loop={true}
-        className={exploreSwiper}
+        className={props.exploreSwiper}
       >
         {data?.genres?.map((genre: any) => (
           <SwiperSlide
-            onClick={() => handleRoute(genre.id)}
+            onClick={() => handleRouteGenre(genre.id)}
             key={genre.id}
-            className={exploreSlide}
+            className={props.exploreSlide}
           >
             <MovieBox title={genre.name}>
               <div className={style.imgContent}>

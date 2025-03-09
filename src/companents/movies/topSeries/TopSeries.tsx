@@ -11,33 +11,22 @@ type TopSeriesProps = {
   handleRouteTv: (id: number) => void;
 } & MovieProps;
 
-export function TopSeries({
-  tvTop,
-  currentLanguage,
-  genres,
-  customControls,
-  swiperPrev,
-  swiperNext,
-  swiperPagination,
-  handleRouteTv,
-  exploreSwiper,
-  exploreSlide,
-}: TopSeriesProps) {
+export function TopSeries({ tvTop, handleRouteTv, ...props }: TopSeriesProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={genres}>
+      <div className={props.genres}>
         <h2 className="global-title">
-          {currentLanguage == "en-US" ? "Top series" : "Топ сериалы"}
+          {props.currentLanguage == "en-US" ? "Top series" : "Топ сериалы"}
         </h2>
-        <div className={customControls}>
-          <button ref={navigationPrevRef} className={swiperPrev}>
+        <div className={props.customControls}>
+          <button ref={navigationPrevRef} className={props.swiperPrev}>
             <Image src={"/prev.png"} alt="btn" width={21} height={17} />
           </button>
-          <div ref={paginationRef} className={swiperPagination}></div>
-          <button ref={navigationNextRef} className={swiperNext}>
+          <div ref={paginationRef} className={props.swiperPagination}></div>
+          <button ref={navigationNextRef} className={props.swiperNext}>
             <Image src={"/next.png"} alt="btn" width={21} height={17} />
           </button>
         </div>
@@ -77,13 +66,13 @@ export function TopSeries({
         spaceBetween={20}
         slidesPerView={"auto"}
         loop={true}
-        className={exploreSwiper}
+        className={props.exploreSwiper}
       >
         {tvTop?.results?.map((film: any) => (
           <SwiperSlide
             onClick={() => handleRouteTv(film.id)}
             key={film.id}
-            className={exploreSlide}
+            className={props.exploreSlide}
           >
             <MovieCard
               img={film.backdrop_path}
