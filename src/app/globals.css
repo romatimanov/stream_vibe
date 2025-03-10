@@ -101,3 +101,15 @@ li {
 .react-tel-input .flag {
   height: 10px !important;
 }
+.swiper-pagination-bullet {
+  background: #333333 !important;
+  width: 16px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
+.swiper-pagination-bullet-active {
+  background: #e50000 !important;
+  width: 21px !important;
+  height: 4px !important;
+  border-radius: 5px !important;
+}
