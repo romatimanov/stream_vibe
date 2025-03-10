@@ -143,13 +143,21 @@ export function AboutFims({
             </div>
           )}
           <div className={style.contentImage}>
-            <img
-              className={style.poster}
-              src={`https://image.tmdb.org/t/p/w1920/${data?.backdrop_path}`}
-              alt="movieDetails"
-              onLoad={() => setIsImageLoaded(true)}
-              style={{ display: isImageLoaded ? "block" : "loading" }}
-            />
+            {data?.backdrop_path ? (
+              <img
+                className={style.poster}
+                src={`https://image.tmdb.org/t/p/w1920/${data?.backdrop_path}`}
+                alt="movieDetails"
+                onLoad={() => setIsImageLoaded(true)}
+                style={{ display: isImageLoaded ? "block" : "loading" }}
+              />
+            ) : (
+              <div className={style.noImage}>
+                {currentLanguage === "en-US"
+                  ? "Image not available"
+                  : "Изображение отсутствует"}
+              </div>
+            )}
           </div>
         </div>
       )}
