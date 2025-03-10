@@ -56,6 +56,7 @@ export default function Movie() {
   const director = credits?.crew?.find(
     (person) => person.known_for_department === "Directing"
   );
+  console.log(video);
 
   if (isLoading) return <Loader />;
   if (error) return <p>Ошибка при загрузке фильма</p>;

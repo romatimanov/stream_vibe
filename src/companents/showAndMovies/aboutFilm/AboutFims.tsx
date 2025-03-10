@@ -55,7 +55,6 @@ export function AboutFims({
   useEffect(() => {
     if (favorite?.results) {
       setIsFavorite(new Set(favorite.results.map((film) => film.id)));
-      console.log(favorite);
     }
   }, [favorite]);
 

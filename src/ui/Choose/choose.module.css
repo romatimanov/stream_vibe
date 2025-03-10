@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  flex: 1;
 }
 .text {
   font-size: clamp(14px, 2vw, 18px);
@@ -60,7 +61,7 @@
 }
 .btn,
 .btnRed {
-  max-width: 196px;
+  width: 100%;
   justify-content: center;
 }
 @media (max-width: 600px) {
