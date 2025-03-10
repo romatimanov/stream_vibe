@@ -42,7 +42,8 @@ export default function ModalAuth({ setModalIsOpen, modalIsOpen }: ModalProps) {
           border: "2px solid #262626",
           maxWidth: "900px",
           height: "240px",
-          width: "700px",
+          width: "350px",
+          textAlign: "center",
         },
       }}
     >
