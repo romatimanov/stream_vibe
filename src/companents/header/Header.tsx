@@ -348,6 +348,7 @@ export default function Header() {
                 />
               </div>
               <Button
+                styles={styles.button}
                 onClick={() => {
                   if (sessionId) {
                     handleAuth();
