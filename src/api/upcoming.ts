@@ -11,6 +11,7 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   backdrop_path: string;
+  release_date?: string;
 }
 
 export interface MoviesResponse {

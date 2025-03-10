@@ -11,14 +11,19 @@
   transition: all 0.3s ease-in-out;
 }
 
-.movieCard:hover {
-  transform: scale(0.98);
-}
 .poster {
   border-radius: 20px;
-  width: 243px;
+  max-width: 300px;
   height: 281px;
   object-fit: cover;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+.movieCard:hover .poster {
+  transform: scale(1.03);
+}
+.movieCard:hover {
+  border-color: #2a2a2a;
 }
 .content {
   display: flex;

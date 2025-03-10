@@ -17,7 +17,7 @@
   text-align: center;
 }
 .movieCard:hover {
-  transform: scale(0.98);
+  border-color: #2a2a2a;
 }
 .poster {
   border-radius: 20px;
@@ -25,6 +25,10 @@
   max-width: 700px;
   height: 281px;
   object-fit: cover;
+  transition: all 0.3s ease-in-out;
+}
+.movieCard:hover .poster {
+  transform: scale(1.03);
 }
 .content {
   display: flex;

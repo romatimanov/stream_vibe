@@ -1,13 +1,14 @@
 export function useAddFavorite(
   movieId: number,
   addFavorite: any,
-  refetch: any
+  refetch: any,
+  isFavorite: boolean
 ) {
   const accountId = localStorage.getItem("accountId");
 
   if (!accountId) return;
 
-  addFavorite({ accountId, movieId })
+  addFavorite({ accountId, movieId, favorite: !isFavorite })
     .unwrap()
     .then(() => {
       refetch();

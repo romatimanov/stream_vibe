@@ -1,14 +1,19 @@
-export function useAddWatch(movieId: number, addWatch: any, refetch: any) {
+export function useAddWatch(
+  movieId: number,
+  addWatch: any,
+  refetch: any,
+  isWatched: boolean
+) {
   const accountId = localStorage.getItem("accountId");
 
   if (!accountId) return;
 
-  addWatch({ accountId, movieId })
+  addWatch({ accountId, movieId, watchlist: !isWatched })
     .unwrap()
     .then(() => {
       refetch();
     })
     .catch((error: any) => {
-      console.error("Ошибка добавления в watchlist:", error);
+      console.error("Ошибка обновления watchlist:", error);
     });
 }

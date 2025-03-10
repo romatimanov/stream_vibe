@@ -12,13 +12,13 @@ export const addFavoriteApi = createApi({
   }),
   endpoints: (builder) => ({
     addFavorite: builder.mutation({
-      query: ({ accountId, movieId }) => ({
+      query: ({ accountId, movieId, favorite }) => ({
         url: `/3/account/${accountId}/favorite`,
         method: "POST",
         body: {
           media_type: "movie",
           media_id: movieId,
-          favorite: true,
+          favorite,
         },
         headers: {
           "Content-Type": "application/json",

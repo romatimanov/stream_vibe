@@ -88,7 +88,12 @@ export function AboutFims({
                   <button
                     className={style.filmButton}
                     onClick={() =>
-                      useAddWatch(data.id, addWatchMutation, refetch)
+                      useAddWatch(
+                        data.id,
+                        addWatchMutation,
+                        refetch,
+                        isWatch.has(data.id)
+                      )
                     }
                   >
                     {!isWatch.has(data.id) ? (
@@ -113,7 +118,8 @@ export function AboutFims({
                       useAddFavorite(
                         data.id,
                         addFavoriteMutation,
-                        refetchFavorite
+                        refetchFavorite,
+                        isFavorite.has(data.id)
                       )
                     }
                   >

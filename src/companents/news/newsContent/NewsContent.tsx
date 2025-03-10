@@ -9,17 +9,18 @@ import { useQuery } from "@tanstack/react-query";
 import style from "./newsContent.module.css";
 import { Weather } from "@/companents/weather/Weather";
 import { Loader } from "@/companents/loader/Loader";
-import { useGetLatestRatesQuery } from "@/api/exchangeApi";
+import { useGetUpcomingMoviesQuery } from "@/api/upcoming";
+import { useRouter } from "next/navigation";
 
 export function NewsContent() {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
-  const { data: rates } = useGetLatestRatesQuery("USD");
   const langCode = currentLanguage.split("-")[0];
-  const [isExpanded, setIsExpanded] = useState("");
   const [page, setPage] = useState(1);
   const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const { data: upcoming } = useGetUpcomingMoviesQuery(currentLanguage);
+  const router = useRouter();
 
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["movieNews", langCode, page],
@@ -31,14 +32,6 @@ export function NewsContent() {
       return response.json();
     },
   });
-  useEffect(() => {
-    const footer = document.querySelector("footer");
-    if (footer) {
-      footer.style.display = "block";
-      footer.style.visibility = "visible";
-    }
-    console.log(footer);
-  }, []);
 
   useEffect(() => {
     refetch();
@@ -58,15 +51,25 @@ export function NewsContent() {
     }
   }, [data]);
 
-  const searchExpanded = (value: string) => {
-    setIsExpanded(value);
+  const getNextWeekPremieres = (movies: any) => {
+    const today = new Date();
+
+    const nextMonday = new Date(today);
+    nextMonday.setDate(today.getDate() + (8 - today.getDay()));
+
+    const nextSunday = new Date(nextMonday);
+    nextSunday.setDate(nextMonday.getDate() + 6);
+
+    return movies.filter((movie: any) => {
+      const release = new Date(movie.release_date);
+      return release >= nextMonday && release <= nextSunday;
+    });
   };
 
-  const filteredRates = rates
-    ? Object.entries(rates.rates).filter(([currency]) =>
-        currency.toLowerCase().includes(isExpanded.toLowerCase())
-      )
-    : [];
+  const nextWeekMovies = upcoming ? getNextWeekPremieres(upcoming.results) : [];
+  upcoming?.results.map((film) => {
+    console.log(film.release_date);
+  });
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -109,30 +112,36 @@ export function NewsContent() {
         </aside>
         <div className={style.dopContent}>
           <Weather />
-          <div className={style.ratesContent}>
-            <ul className={style.rates}>
-              <div className={style.search}>
-                <input
-                  type="text"
-                  value={isExpanded}
-                  onChange={(e) => searchExpanded(e.target.value)}
-                  placeholder={
-                    currentLanguage === "en-US"
-                      ? "Search currency"
-                      : "Поиск валюты"
-                  }
-                  className={style.input}
-                />
-              </div>
-              {rates &&
-                Object.entries(filteredRates).map(([currency, rate]) => (
-                  <li key={currency}>
-                    <div className={style.rate}>
-                      <p className={style.currency}>{rate[0]}</p>
-                      <p className={style.currency}>{rate[1]}</p>
-                    </div>
-                  </li>
-                ))}
+          <div className={style.nextWeek}>
+            <h4 className="global-title--small">
+              {currentLanguage === "en-US"
+                ? "Upcoming movies next week"
+                : "На следующей неделе"}
+            </h4>
+            <ul className={style.nextWeekList}>
+              {nextWeekMovies.map((movie: any) => (
+                <li
+                  key={movie.id}
+                  className={style.nextWeekItem}
+                  onClick={() => router.push(`/movies/${movie.id}`)}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    alt={movie.title}
+                    className={style.img}
+                  />
+                  <div className={style.info}>
+                    <h3>{movie.title}</h3>
+                    <p className="global-text--small">
+                      {currentLanguage === "en-US"
+                        ? "Release Date:"
+                        : "Дата выхода:"}{" "}
+                      {movie.release_date}
+                    </p>
+                    <p className={style.description}>{movie.overview}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

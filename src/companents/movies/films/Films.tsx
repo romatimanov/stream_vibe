@@ -63,6 +63,8 @@ export function Films() {
   const handleRouteTv = (id: number) => router.push(`/tv/${id}`);
   const handleRouteGenre = (id: number) => router.push(`/genres/${id}`);
 
+  console.log(upcoming);
+
   if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;
   if (!currentLanguage) return null;

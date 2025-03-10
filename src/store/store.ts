@@ -17,7 +17,6 @@ import { tvDetailsApi } from "@/api/tvDetails";
 import { movieByGenreApi } from "@/api/movieByGenreApi";
 import { newsApi } from "@/api/newsApi";
 import { weatherApi } from "@/api/weatherApi";
-import { exchangeApi } from "@/api/exchangeApi";
 import { addWatchApi } from "@/api/addWatchApi";
 import { watchListApi } from "@/api/watchListApi";
 import { addFavoriteApi } from "@/api/addFavoriteApi";
@@ -38,7 +37,6 @@ const rootReducer = combineReducers({
   [movieByGenreApi.reducerPath]: movieByGenreApi.reducer,
   [newsApi.reducerPath]: newsApi.reducer,
   [weatherApi.reducerPath]: weatherApi.reducer,
-  [exchangeApi.reducerPath]: exchangeApi.reducer,
   [addWatchApi.reducerPath]: addWatchApi.reducer,
   [watchListApi.reducerPath]: watchListApi.reducer,
   [addFavoriteApi.reducerPath]: addFavoriteApi.reducer,
@@ -64,7 +62,6 @@ export const store = configureStore({
       movieByGenreApi.middleware,
       newsApi.middleware,
       weatherApi.middleware,
-      exchangeApi.middleware,
       addWatchApi.middleware,
       watchListApi.middleware,
       addFavoriteApi.middleware,

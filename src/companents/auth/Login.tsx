@@ -5,6 +5,7 @@ import style from "./login.module.css";
 export default function Login() {
   const [authUrl, setAuthUrl] = useState<string | null>(null);
   const [requestToken, setRequestToken] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const fetchAccountId = async () => {
     const sessionId = localStorage.getItem("sessionId");
@@ -95,10 +96,16 @@ export default function Login() {
             href={authUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              setIsSuccess(true);
+            }}
           >
             Подтвердить авторизацию на TMDb
           </a>
-          <button className={style.button} onClick={createSession}>
+          <button
+            className={`${style.button} ${!isSuccess ? style.active : ""}`}
+            onClick={createSession}
+          >
             Подтвердить
           </button>
         </div>

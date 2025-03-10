@@ -12,13 +12,13 @@ export const addWatchApi = createApi({
   }),
   endpoints: (builder) => ({
     addWatch: builder.mutation({
-      query: ({ accountId, movieId }) => ({
+      query: ({ accountId, movieId, watchlist }) => ({
         url: `/3/account/${accountId}/watchlist`,
         method: "POST",
         body: {
           media_type: "movie",
           media_id: movieId,
-          watchlist: true,
+          watchlist,
         },
         headers: {
           "Content-Type": "application/json",

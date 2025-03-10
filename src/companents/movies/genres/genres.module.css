@@ -10,6 +10,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   background: rgb(26, 26, 26);
+  transition: all 0.3s ease-in-out;
 }
 .imgContent::after {
   content: "";
@@ -20,6 +21,7 @@
   height: 100%;
   background: linear-gradient(0deg, #1a1a1a 0%, #0000 80%);
 }
+
 @media (max-width: 600px) {
   .exploreMovieImage {
     border-radius: 5px;

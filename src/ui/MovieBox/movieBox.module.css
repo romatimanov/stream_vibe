@@ -11,7 +11,7 @@
   transition: all 0.3s ease-in-out;
 }
 .movieBox:hover {
-  transform: scale(0.97);
+  border-color: #2a2a2a;
 }
 
 .content {
@@ -28,6 +28,11 @@
   font-size: clamp(14px, 2vw, 18px);
   font-weight: 400;
   line-height: clamp(16px, 2vw, 20px);
+  transition: all 0.3s ease-in-out;
+}
+
+.movieBox:hover .arrow {
+  transform: translateX(-5px);
 }
 @media (max-width: 600px) {
   .movieBox {
