@@ -143,7 +143,11 @@ export default function Header() {
   const handleLanguageChange = (selectedOption: any) => {
     dispatch(setLanguage(selectedOption.value));
   };
-
+  const handleAuth = () => {
+    router.push("/dashboard");
+    document.body.classList.remove("hideScroll");
+    setIsOpen(false);
+  };
   const handleLinkClick = (id: number) => {
     router.push(`/movies/${id}`);
     setSearchQuery("");
@@ -343,6 +347,24 @@ export default function Header() {
                   components={{ DropdownIndicator: customDropdownIndicator }}
                 />
               </div>
+              <Button
+                onClick={() => {
+                  if (sessionId) {
+                    handleAuth();
+                  } else {
+                    setModalIsOpen(true);
+                  }
+                  document.body.classList.remove("hideScroll");
+                }}
+              >
+                {!sessionId
+                  ? currentLanguage === "en-US"
+                    ? "Sign In"
+                    : "Войти"
+                  : currentLanguage === "en-US"
+                  ? "Profile"
+                  : "Профиль"}
+              </Button>
             </div>
           </div>
         ) : (
@@ -373,9 +395,13 @@ export default function Header() {
               components={{ DropdownIndicator: customDropdownIndicator }}
             />
             <Button
-              onClick={() =>
-                sessionId ? router.push("/dashboard") : setModalIsOpen(true)
-              }
+              onClick={() => {
+                if (sessionId) {
+                  router.push("/dashboard");
+                } else {
+                  setModalIsOpen(true);
+                }
+              }}
             >
               {!sessionId
                 ? currentLanguage === "en-US"

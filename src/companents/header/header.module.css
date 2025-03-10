@@ -216,6 +216,10 @@
   }
   .icons {
     padding-left: 15px;
+    margin-bottom: 20px;
+  }
+  .button {
+    margin-left: 20px;
   }
   .searchContainer {
     position: relative;

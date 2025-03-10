@@ -1,5 +1,4 @@
 .movieCard {
-  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -13,7 +12,7 @@
 
 .poster {
   border-radius: 20px;
-  max-width: 300px;
+  max-width: 600px;
   height: 281px;
   object-fit: cover;
   transition: all 0.3s ease-in-out;
@@ -44,11 +43,9 @@
 }
 @media (max-width: 600px) {
   .movieCard {
-    width: 181px;
     padding: 12px;
   }
   .poster {
-    width: 153px;
     height: 195px;
   }
 }
