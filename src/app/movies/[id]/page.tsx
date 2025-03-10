@@ -10,7 +10,6 @@ import {
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import style from "./movieDetails.module.css";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

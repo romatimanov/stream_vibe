@@ -7,4 +7,5 @@ export type MovieProps = {
   exploreSwiper: string;
   exploreSlide: string;
   genres: string;
+  myWrapper: string;
 };

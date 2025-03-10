@@ -51,64 +51,66 @@ export function Genres({ data, handleRouteGenre, ...props }: GenreProps) {
           </button>
         </div>
       </div>
-      <Swiper
-        onBeforeInit={(swiper) => {
-          if (
-            swiper.params.navigation &&
-            typeof swiper.params.navigation !== "boolean"
-          ) {
-            const navOptions = swiper.params.navigation as NavigationOptions;
-            navOptions.prevEl = navigationPrevRef.current;
-            navOptions.nextEl = navigationNextRef.current;
-          }
-          if (
-            swiper.params.pagination &&
-            typeof swiper.params.pagination !== "boolean"
-          ) {
-            const paginationOptions = swiper.params.pagination;
-            paginationOptions.el = paginationRef.current;
-            paginationOptions.clickable = true;
-            paginationOptions.type = "custom";
-            paginationOptions.renderCustom = (swiper, current, total) => {
-              const bulletCount = 4;
-              let bulletsHTML = "";
-              const activeIndex = (current - 1) % bulletCount;
-              for (let i = 0; i < bulletCount; i++) {
-                bulletsHTML += `<span class="swiper-pagination-bullet ${
-                  i === activeIndex ? "swiper-pagination-bullet-active" : ""
-                }"></span>`;
-              }
-              return bulletsHTML;
-            };
-          }
-        }}
-        modules={[Navigation, Pagination]}
-        spaceBetween={20}
-        slidesPerView={"auto"}
-        loop={true}
-        className={props.exploreSwiper}
-      >
-        {data?.genres?.map((genre: any) => (
-          <SwiperSlide
-            onClick={() => handleRouteGenre(genre.id)}
-            key={genre.id}
-            className={props.exploreSlide}
-          >
-            <MovieBox title={genre.name}>
-              <div className={style.imgContent}>
-                {moviesByGenre[genre.id]?.map((movie: any) => (
-                  <img
-                    key={movie.id}
-                    className={style.exploreMovieImage}
-                    src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                    alt={movie.title}
-                  />
-                ))}
-              </div>
-            </MovieBox>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={props.myWrapper}>
+        <Swiper
+          onBeforeInit={(swiper) => {
+            if (
+              swiper.params.navigation &&
+              typeof swiper.params.navigation !== "boolean"
+            ) {
+              const navOptions = swiper.params.navigation as NavigationOptions;
+              navOptions.prevEl = navigationPrevRef.current;
+              navOptions.nextEl = navigationNextRef.current;
+            }
+            if (
+              swiper.params.pagination &&
+              typeof swiper.params.pagination !== "boolean"
+            ) {
+              const paginationOptions = swiper.params.pagination;
+              paginationOptions.el = paginationRef.current;
+              paginationOptions.clickable = true;
+              paginationOptions.type = "custom";
+              paginationOptions.renderCustom = (swiper, current, total) => {
+                const bulletCount = 4;
+                let bulletsHTML = "";
+                const activeIndex = (current - 1) % bulletCount;
+                for (let i = 0; i < bulletCount; i++) {
+                  bulletsHTML += `<span class="swiper-pagination-bullet ${
+                    i === activeIndex ? "swiper-pagination-bullet-active" : ""
+                  }"></span>`;
+                }
+                return bulletsHTML;
+              };
+            }
+          }}
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={"auto"}
+          loop={true}
+          className={props.exploreSwiper}
+        >
+          {data?.genres?.map((genre: any) => (
+            <SwiperSlide
+              onClick={() => handleRouteGenre(genre.id)}
+              key={genre.id}
+              className={props.exploreSlide}
+            >
+              <MovieBox title={genre.name}>
+                <div className={style.imgContent}>
+                  {moviesByGenre[genre.id]?.map((movie: any) => (
+                    <img
+                      key={movie.id}
+                      className={style.exploreMovieImage}
+                      src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                      alt={movie.title}
+                    />
+                  ))}
+                </div>
+              </MovieBox>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 }

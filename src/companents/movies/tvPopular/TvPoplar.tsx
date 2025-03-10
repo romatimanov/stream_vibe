@@ -35,57 +35,59 @@ export function TvPopular({
           </button>
         </div>
       </div>
-      <Swiper
-        onBeforeInit={(swiper) => {
-          if (
-            swiper.params.navigation &&
-            typeof swiper.params.navigation !== "boolean"
-          ) {
-            const navOptions = swiper.params.navigation as NavigationOptions;
-            navOptions.prevEl = navigationPrevRef.current;
-            navOptions.nextEl = navigationNextRef.current;
-          }
-          if (
-            swiper.params.pagination &&
-            typeof swiper.params.pagination !== "boolean"
-          ) {
-            const paginationOptions = swiper.params.pagination;
-            paginationOptions.el = paginationRef.current;
-            paginationOptions.clickable = true;
-            paginationOptions.type = "custom";
-            paginationOptions.renderCustom = (swiper, current, total) => {
-              const bulletCount = 4;
-              let bulletsHTML = "";
-              const activeIndex = (current - 1) % bulletCount;
-              for (let i = 0; i < bulletCount; i++) {
-                bulletsHTML += `<span class="swiper-pagination-bullet ${
-                  i === activeIndex ? "swiper-pagination-bullet-active" : ""
-                }"></span>`;
-              }
-              return bulletsHTML;
-            };
-          }
-        }}
-        modules={[Navigation, Pagination]}
-        spaceBetween={20}
-        slidesPerView={"auto"}
-        loop={true}
-        className={props.exploreSwiper}
-      >
-        {tvPopular?.results?.map((film: any) => (
-          <SwiperSlide
-            onClick={() => handleRouteTv(film.id)}
-            key={film.id}
-            className={props.exploreSlide}
-          >
-            <MovieCard
-              img={film.backdrop_path}
-              rating={film.vote_average}
-              view={film.vote_count}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={props.myWrapper}>
+        <Swiper
+          onBeforeInit={(swiper) => {
+            if (
+              swiper.params.navigation &&
+              typeof swiper.params.navigation !== "boolean"
+            ) {
+              const navOptions = swiper.params.navigation as NavigationOptions;
+              navOptions.prevEl = navigationPrevRef.current;
+              navOptions.nextEl = navigationNextRef.current;
+            }
+            if (
+              swiper.params.pagination &&
+              typeof swiper.params.pagination !== "boolean"
+            ) {
+              const paginationOptions = swiper.params.pagination;
+              paginationOptions.el = paginationRef.current;
+              paginationOptions.clickable = true;
+              paginationOptions.type = "custom";
+              paginationOptions.renderCustom = (swiper, current, total) => {
+                const bulletCount = 4;
+                let bulletsHTML = "";
+                const activeIndex = (current - 1) % bulletCount;
+                for (let i = 0; i < bulletCount; i++) {
+                  bulletsHTML += `<span class="swiper-pagination-bullet ${
+                    i === activeIndex ? "swiper-pagination-bullet-active" : ""
+                  }"></span>`;
+                }
+                return bulletsHTML;
+              };
+            }
+          }}
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={"auto"}
+          loop={true}
+          className={props.exploreSwiper}
+        >
+          {tvPopular?.results?.map((film: any) => (
+            <SwiperSlide
+              onClick={() => handleRouteTv(film.id)}
+              key={film.id}
+              className={props.exploreSlide}
+            >
+              <MovieCard
+                img={film.backdrop_path}
+                rating={film.vote_average}
+                view={film.vote_count}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 }

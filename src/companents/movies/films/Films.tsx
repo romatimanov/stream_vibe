@@ -56,14 +56,13 @@ export function Films() {
     exploreSwiper: style.exploreSwiper,
     exploreSlide: style.exploreSlide,
     genres: style.genres,
+    myWrapper: style.myWrapper,
   };
 
   const handleClickActive = (index: number) => setActiveBtn(index);
   const handleRoute = (id: number) => router.push(`/movies/${id}`);
   const handleRouteTv = (id: number) => router.push(`/tv/${id}`);
   const handleRouteGenre = (id: number) => router.push(`/genres/${id}`);
-
-  console.log(upcoming);
 
   if (isLoading) return <Loader />;
   if (error) return <div>Ошибка загрузки</div>;

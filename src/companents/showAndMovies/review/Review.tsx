@@ -49,67 +49,71 @@ export function Review({
       </div>
       {reviews?.results?.length && reviews?.results?.length > 0 ? (
         <div className={style.reviewSlider}>
-          <Swiper
-            onBeforeInit={(swiper) => {
-              if (
-                swiper.params.navigation &&
-                typeof swiper.params.navigation !== "boolean"
-              ) {
-                const navOptions = swiper.params
-                  .navigation as NavigationOptions;
-                navOptions.prevEl = navigationPrevRef.current;
-                navOptions.nextEl = navigationNextRef.current;
-              }
-              if (
-                swiper.params.pagination &&
-                typeof swiper.params.pagination !== "boolean"
-              ) {
-                const paginationOptions = swiper.params.pagination;
-                paginationOptions.el = paginationRef.current;
-                paginationOptions.clickable = true;
-                paginationOptions.type = "custom";
-                paginationOptions.renderCustom = (swiper, current, total) => {
-                  const bulletCount = 4;
-                  let bulletsHTML = "";
-                  const activeIndex = (current - 1) % bulletCount;
-                  for (let i = 0; i < bulletCount; i++) {
-                    bulletsHTML += `<span class="swiper-pagination-bullet ${
-                      i === activeIndex ? "swiper-pagination-bullet-active" : ""
-                    }"></span>`;
-                  }
-                  return bulletsHTML;
-                };
-              }
-            }}
-            modules={[Navigation, Pagination]}
-            spaceBetween={20}
-            slidesPerView={isMobile ? 1 : 2}
-            loop={true}
-            className={style.reviewSwiper}
-          >
-            {reviews?.results?.map((review: any) => (
-              <SwiperSlide key={review.id} className={style.exploreSlide}>
-                <div className={style.review}>
-                  <div className={style.reviewHeader}>
-                    <div className={style.reviewAuthor}>
-                      <p className={style.name}>
-                        {review.author_details?.name}
-                      </p>
-                      <p className="global-text">
-                        {review.author_details?.username}
-                      </p>
+          <div className={style.myWrapper}>
+            <Swiper
+              onBeforeInit={(swiper) => {
+                if (
+                  swiper.params.navigation &&
+                  typeof swiper.params.navigation !== "boolean"
+                ) {
+                  const navOptions = swiper.params
+                    .navigation as NavigationOptions;
+                  navOptions.prevEl = navigationPrevRef.current;
+                  navOptions.nextEl = navigationNextRef.current;
+                }
+                if (
+                  swiper.params.pagination &&
+                  typeof swiper.params.pagination !== "boolean"
+                ) {
+                  const paginationOptions = swiper.params.pagination;
+                  paginationOptions.el = paginationRef.current;
+                  paginationOptions.clickable = true;
+                  paginationOptions.type = "custom";
+                  paginationOptions.renderCustom = (swiper, current, total) => {
+                    const bulletCount = 4;
+                    let bulletsHTML = "";
+                    const activeIndex = (current - 1) % bulletCount;
+                    for (let i = 0; i < bulletCount; i++) {
+                      bulletsHTML += `<span class="swiper-pagination-bullet ${
+                        i === activeIndex
+                          ? "swiper-pagination-bullet-active"
+                          : ""
+                      }"></span>`;
+                    }
+                    return bulletsHTML;
+                  };
+                }
+              }}
+              modules={[Navigation, Pagination]}
+              spaceBetween={20}
+              slidesPerView={isMobile ? 1 : 2}
+              loop={true}
+              className={style.reviewSwiper}
+            >
+              {reviews?.results?.map((review: any) => (
+                <SwiperSlide key={review.id} className={style.exploreSlide}>
+                  <div className={style.review}>
+                    <div className={style.reviewHeader}>
+                      <div className={style.reviewAuthor}>
+                        <p className={style.name}>
+                          {review.author_details?.name}
+                        </p>
+                        <p className="global-text">
+                          {review.author_details?.username}
+                        </p>
+                      </div>
+                      <div className={style.rating}>
+                        <RatingStars rating={review.author_details?.rating} />
+                      </div>
                     </div>
-                    <div className={style.rating}>
-                      <RatingStars rating={review.author_details?.rating} />
+                    <div className={style.reviewContent}>
+                      <p className={style.reviewText}>{review.content}</p>
                     </div>
                   </div>
-                  <div className={style.reviewContent}>
-                    <p className={style.reviewText}>{review.content}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       ) : (
         <p>{currentLanguage === "en-US" ? "No reviews" : "Нет отзывов"}</p>

@@ -98,140 +98,148 @@ export function About() {
           </button>
         </div>
 
-        <Swiper
-          onBeforeInit={(swiper) => {
-            if (
-              swiper.params.navigation &&
-              typeof swiper.params.navigation !== "boolean"
-            ) {
-              const navOptions = swiper.params.navigation as NavigationOptions;
-              navOptions.prevEl = navigationPrevRef.current;
-              navOptions.nextEl = navigationNextRef.current;
-            }
-            if (
-              swiper.params.pagination &&
-              typeof swiper.params.pagination !== "boolean"
-            ) {
-              const paginationOptions = swiper.params.pagination;
-              paginationOptions.el = paginationRef.current;
-              paginationOptions.clickable = true;
-              paginationOptions.type = "custom";
-              paginationOptions.renderCustom = (swiper, current, total) => {
-                const bulletCount = 4;
-                let bulletsHTML = "";
-                const activeIndex = (current - 1) % bulletCount;
-                for (let i = 0; i < bulletCount; i++) {
-                  bulletsHTML += `<span class="swiper-pagination-bullet ${
-                    i === activeIndex ? "swiper-pagination-bullet-active" : ""
-                  }"></span>`;
-                }
-                return bulletsHTML;
-              };
-            }
-          }}
-          modules={[Navigation, Pagination, Autoplay]}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 5000 }}
-          className={style.exploreSwiper}
-          onSlideChange={(swiper) => {
-            const activeIndex = swiper.realIndex;
-            const currentFilm = data?.results[activeIndex];
-            if (currentFilm) {
-              setCurrentMovieId(currentFilm.id);
-            }
-          }}
-        >
-          {data?.results?.map((film) => (
-            <SwiperSlide key={film.id} className={style.aboutSlide}>
-              <div className={style.aboutFilm}>
-                <div className="global-text--content">
-                  <h1 className="global-title">{film.title}</h1>
-                  <h2 className={`${style.filmText} global-text`}>
-                    {film.overview}
-                  </h2>
-                </div>
-                <div className={style.btnGroup}>
-                  <Button
-                    styles={style.previewButton}
-                    onClick={() => setModalIsOpen(true)}
-                  >
-                    <Image src="/play.png" alt="play" width={17} height={19} />
-                    {currentLanguage === "en-US"
-                      ? "Play Now"
-                      : "Смотреть сейчас"}
-                  </Button>
-                  <div className={style.filmButtons}>
-                    <button
-                      className={style.filmButton}
-                      onClick={() =>
-                        useAddWatch(
-                          film.id,
-                          addWatchMutation,
-                          refetch,
-                          isWatch.has(film.id)
-                        )
-                      }
+        <div className={style.myWrapper}>
+          <Swiper
+            onBeforeInit={(swiper) => {
+              if (
+                swiper.params.navigation &&
+                typeof swiper.params.navigation !== "boolean"
+              ) {
+                const navOptions = swiper.params
+                  .navigation as NavigationOptions;
+                navOptions.prevEl = navigationPrevRef.current;
+                navOptions.nextEl = navigationNextRef.current;
+              }
+              if (
+                swiper.params.pagination &&
+                typeof swiper.params.pagination !== "boolean"
+              ) {
+                const paginationOptions = swiper.params.pagination;
+                paginationOptions.el = paginationRef.current;
+                paginationOptions.clickable = true;
+                paginationOptions.type = "custom";
+                paginationOptions.renderCustom = (swiper, current, total) => {
+                  const bulletCount = 4;
+                  let bulletsHTML = "";
+                  const activeIndex = (current - 1) % bulletCount;
+                  for (let i = 0; i < bulletCount; i++) {
+                    bulletsHTML += `<span class="swiper-pagination-bullet ${
+                      i === activeIndex ? "swiper-pagination-bullet-active" : ""
+                    }"></span>`;
+                  }
+                  return bulletsHTML;
+                };
+              }
+            }}
+            modules={[Navigation, Pagination, Autoplay]}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 5000 }}
+            className={style.exploreSwiper}
+            onSlideChange={(swiper) => {
+              const activeIndex = swiper.realIndex;
+              const currentFilm = data?.results[activeIndex];
+              if (currentFilm) {
+                setCurrentMovieId(currentFilm.id);
+              }
+            }}
+          >
+            {data?.results?.map((film) => (
+              <SwiperSlide key={film.id} className={style.aboutSlide}>
+                <div className={style.aboutFilm}>
+                  <div className="global-text--content">
+                    <h1 className="global-title">{film.title}</h1>
+                    <h2 className={`${style.filmText} global-text`}>
+                      {film.overview}
+                    </h2>
+                  </div>
+                  <div className={style.btnGroup}>
+                    <Button
+                      styles={style.previewButton}
+                      onClick={() => setModalIsOpen(true)}
                     >
-                      {!isWatch.has(film.id) ? (
-                        <Image
-                          src="/plus.png"
-                          alt="watched"
-                          width={14}
-                          height={14}
-                        />
-                      ) : (
-                        <Image
-                          src="/plus-active.svg"
-                          alt="watched"
-                          width={14}
-                          height={14}
-                        />
-                      )}
-                    </button>
-                    <button
-                      className={style.filmButton}
-                      onClick={() =>
-                        useAddFavorite(
-                          film.id,
-                          addFavoriteMutation,
-                          refetchFavorite,
-                          isFavorite.has(film.id)
-                        )
-                      }
-                    >
-                      {!isFavorite.has(film.id) ? (
-                        <Image
-                          src="/like.png"
-                          alt="watched"
-                          width={14}
-                          height={14}
-                        />
-                      ) : (
-                        <Image
-                          src="/like-active.svg"
-                          alt="watched"
-                          width={14}
-                          height={14}
-                        />
-                      )}
-                    </button>
+                      <Image
+                        src="/play.png"
+                        alt="play"
+                        width={17}
+                        height={19}
+                      />
+                      {currentLanguage === "en-US"
+                        ? "Play Now"
+                        : "Смотреть сейчас"}
+                    </Button>
+                    <div className={style.filmButtons}>
+                      <button
+                        className={style.filmButton}
+                        onClick={() =>
+                          useAddWatch(
+                            film.id,
+                            addWatchMutation,
+                            refetch,
+                            isWatch.has(film.id)
+                          )
+                        }
+                      >
+                        {!isWatch.has(film.id) ? (
+                          <Image
+                            src="/plus.png"
+                            alt="watched"
+                            width={14}
+                            height={14}
+                          />
+                        ) : (
+                          <Image
+                            src="/plus-active.svg"
+                            alt="watched"
+                            width={14}
+                            height={14}
+                          />
+                        )}
+                      </button>
+                      <button
+                        className={style.filmButton}
+                        onClick={() =>
+                          useAddFavorite(
+                            film.id,
+                            addFavoriteMutation,
+                            refetchFavorite,
+                            isFavorite.has(film.id)
+                          )
+                        }
+                      >
+                        {!isFavorite.has(film.id) ? (
+                          <Image
+                            src="/like.png"
+                            alt="watched"
+                            width={14}
+                            height={14}
+                          />
+                        ) : (
+                          <Image
+                            src="/like-active.svg"
+                            alt="watched"
+                            width={14}
+                            height={14}
+                          />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={style.imgContent}>
-                {moviesByGenre[film.id]?.map((film) => (
-                  <img
-                    key={film.id}
-                    className={style.exploreMovieImage}
-                    src={`https://image.tmdb.org/t/p/w1920/${film.backdrop_path}`}
-                    alt={film.title}
-                  />
-                ))}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                <div className={style.imgContent}>
+                  {moviesByGenre[film.id]?.map((film) => (
+                    <img
+                      key={film.id}
+                      className={style.exploreMovieImage}
+                      src={`https://image.tmdb.org/t/p/w1920/${film.backdrop_path}`}
+                      alt={film.title}
+                    />
+                  ))}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
       <ModalComponent
         video={video}
