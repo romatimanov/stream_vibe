@@ -139,7 +139,7 @@
     );
   }
   .previewContent {
-    margin-top: -130px;
+    margin-top: -130px !important;
   }
   .previewTextContent {
     z-index: 10;
