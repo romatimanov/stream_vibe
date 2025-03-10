@@ -44,6 +44,7 @@ export default function Header() {
   const handleNavigation = (path: string) => {
     router.push(path);
     setIsOpen(false);
+    document.body.classList.remove("hideScroll");
   };
 
   useEffect(() => {

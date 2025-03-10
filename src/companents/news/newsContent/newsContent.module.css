@@ -119,11 +119,9 @@
 }
 @media (max-width: 920px) {
   .content {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
-}
-@media (max-width: 600px) {
-  .content {
-    flex-direction: column-reverse;
+  .nextWeek {
+    width: 100%;
   }
 }
