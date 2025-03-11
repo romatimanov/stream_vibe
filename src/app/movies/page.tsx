@@ -1,12 +1,10 @@
-import { About } from "@/companents/movies/about/About";
-import { Films } from "@/companents/movies/films/Films";
-import ClientProvider from "@/providers/ClientProvider";
+import Movies from "@/companents/movies/movies/Movies";
+import { Suspense } from "react";
 
-export default function Movies() {
+export default function Page() {
   return (
-    <ClientProvider>
-      <About />
-      <Films />
-    </ClientProvider>
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <Movies />
+    </Suspense>
   );
 }
