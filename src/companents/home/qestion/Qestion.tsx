@@ -2,14 +2,13 @@
 import { useCurrentLanguage } from "@/hook/useCurrentLanguage";
 import style from "./question.module.css";
 import * as Accordion from "@radix-ui/react-accordion";
-import { Button } from "@/ui/Button/Button";
 
-export default function Qestion() {
+export default function Qestion({ id }: { id: string }) {
   const currentLanguage = useCurrentLanguage();
 
   if (!currentLanguage) return;
   return (
-    <section className={`${style.qestion} container`}>
+    <section className={`${style.qestion} container`} id={id}>
       <div className={style.qestionTextContent}>
         <div className="global-text--content">
           <h2 className="global-title">
@@ -23,9 +22,6 @@ export default function Qestion() {
               : "Есть вопросы? У нас есть ответы! Ознакомьтесь с разделом FAQ, чтобы найти ответы на самые распространенные вопросы о StreamVibe."}
           </p>
         </div>
-        <Button>
-          {currentLanguage == "en-US" ? "Ask a Question" : "Задать вопрос"}
-        </Button>
       </div>
       <div className={style.accContent}>
         <div className={style.accList}>

@@ -2,9 +2,12 @@
 import { useCurrentLanguage } from "@/hook/useCurrentLanguage";
 import style from "./footer.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { SmartLink } from "../smartLink/SmartLink";
 
 export default function Footer() {
   const currentLanguage = useCurrentLanguage();
+  const route = useRouter();
 
   if (!currentLanguage) return;
   return (
@@ -17,26 +20,42 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/"
+                  scrollTo="categories"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Categories" : "Категории"}
-                </a>
+                </SmartLink>
               </li>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/"
+                  scrollTo="devices"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Devices" : "Устройства"}
-                </a>
+                </SmartLink>
               </li>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/"
+                  scrollTo="pricing"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Pricing" : "Цены"}
-                </a>
+                </SmartLink>
               </li>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/"
+                  scrollTo="qestion"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US"
                     ? "FAQ"
                     : "Часто задаваемые вопросы"}
-                </a>
+                </SmartLink>
               </li>
             </ul>
           </div>
@@ -46,29 +65,46 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/movies"
+                  scrollTo="genres"
+                  type="movie"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Genres" : "Жанры"}
-                </a>
+                </SmartLink>
               </li>
               <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/movies"
+                  scrollTo="now"
+                  type="movie"
+                  className={style.footerLink}
+                >
+                  {currentLanguage === "en-US"
+                    ? "Now Watching"
+                    : "Сейчас смотрят"}
+                </SmartLink>
+              </li>
+              <li>
+                <SmartLink
+                  to="/movies"
+                  type="movie"
+                  scrollTo="trending"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Trending" : "Популярные"}
-                </a>
+                </SmartLink>
               </li>
               <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "New" : "Новые"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Release" : "Выпуск"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Popular" : "Популярные"}
-                </a>
+                <SmartLink
+                  to="/movies"
+                  scrollTo="upcoming"
+                  type="movie"
+                  className={style.footerLink}
+                >
+                  {currentLanguage === "en-US" ? "Upcoming" : "Скоро"}
+                </SmartLink>
               </li>
             </ul>
           </div>
@@ -78,29 +114,36 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Genres" : "Жанры"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Trending" : "Популярные"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "New" : "Новые"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Release" : "Выпуск"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
+                <SmartLink
+                  to="/movies"
+                  scrollTo="tvPopular"
+                  type="tv"
+                  className={style.footerLink}
+                >
                   {currentLanguage === "en-US" ? "Popular" : "Популярные"}
-                </a>
+                </SmartLink>
+              </li>
+              <li>
+                <SmartLink
+                  to="/movies"
+                  scrollTo="tvTop"
+                  type="tv"
+                  className={style.footerLink}
+                >
+                  {currentLanguage === "en-US" ? "Top Series" : "Топ сериалы"}
+                </SmartLink>
+              </li>
+              <li>
+                <SmartLink
+                  to="/movies"
+                  type="tv"
+                  scrollTo="tvToday"
+                  className={style.footerLink}
+                >
+                  {currentLanguage === "en-US"
+                    ? "Now Airing"
+                    : "Сейчас в эфире"}
+                </SmartLink>
               </li>
             </ul>
           </div>
@@ -110,7 +153,11 @@ export default function Footer() {
             </h4>
             <ul className={style.footerList}>
               <li>
-                <a href="#" className={style.footerLink}>
+                <a
+                  href="#"
+                  className={style.footerLink}
+                  onClick={() => route.push("/support")}
+                >
                   {currentLanguage === "en-US"
                     ? "Contact Us"
                     : "Связаться с нами"}
@@ -120,17 +167,16 @@ export default function Footer() {
           </div>
           <div className={style.footerMenu}>
             <h4 className={style.footerMenuTitle}>
-              {currentLanguage === "en-US" ? "Subscription" : "Подписка"}
+              {currentLanguage === "en-US" ? "News" : "Новости"}
             </h4>
             <ul className={style.footerList}>
               <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Plans" : "План"}
-                </a>
-              </li>
-              <li>
-                <a href="#" className={style.footerLink}>
-                  {currentLanguage === "en-US" ? "Features" : "Функции"}
+                <a
+                  href="#"
+                  className={style.footerLink}
+                  onClick={() => route.push("/news")}
+                >
+                  {currentLanguage === "en-US" ? "News" : "Новости"}
                 </a>
               </li>
             </ul>

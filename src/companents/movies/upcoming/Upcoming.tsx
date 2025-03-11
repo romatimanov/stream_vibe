@@ -8,17 +8,23 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 
 type UpcomingProps = {
   upcoming: any;
+  id: string;
   handleRoute: (id: number) => void;
 } & MovieProps;
 
-export function Upcoming({ upcoming, handleRoute, ...props }: UpcomingProps) {
+export function Upcoming({
+  upcoming,
+  handleRoute,
+  id,
+  ...props
+}: UpcomingProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
       {" "}
-      <div className={props.genres}>
+      <div className={props.genres} id="upcoming">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Upcoming" : "Скоро"}
         </h2>

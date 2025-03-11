@@ -9,11 +9,13 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 type TvPopularProps = {
   tvPopular: any;
   handleRouteTv: (id: number) => void;
+  id: string;
 } & MovieProps;
 
 export function TvPopular({
   tvPopular,
   handleRouteTv,
+  id,
   ...props
 }: TvPopularProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
@@ -21,7 +23,7 @@ export function TvPopular({
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id="tvPopular">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Popular" : "Cамые популярные"}
         </h2>

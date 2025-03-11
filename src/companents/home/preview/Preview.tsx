@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./preview.module.css";
 import { useGetPopularMoviesQuery } from "@/api/previewApi";
 import Image from "next/image";
@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { Button } from "@/ui/Button/Button";
 import { Loader } from "@/companents/loader/Loader";
+import ModalAuth from "@/companents/ModalAuth/ModalAuth";
 
 export default function Preview() {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
-
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
 
   if (isLoading) return <Loader />;
@@ -129,13 +130,17 @@ export default function Preview() {
               : "StreamVibe — это лучший потоковый сервис для просмотра ваших любимых фильмов и сериалов по запросу, в любое время и в любом месте. С StreamVibe вы получите доступ к огромному выбору контента, включая последние блокбастеры, классические фильмы, популярные телешоу и многое другое. Вы также можете создавать собственные списки просмотров, чтобы легко находить нужный контент."}
           </p>
         </div>
-        <Button styles={styles.previewButton}>
+        <Button
+          styles={styles.previewButton}
+          onClick={() => setModalIsOpen(true)}
+        >
           <Image src="/play.png" alt="play" width={17} height={19} />
           {currentLanguage === "en-US"
             ? "Start Watching Now"
             : "Начни смотреть сейчас"}
         </Button>
       </div>
+      <ModalAuth setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} />
     </section>
   );
 }

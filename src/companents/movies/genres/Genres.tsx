@@ -7,13 +7,15 @@ import { MovieBox } from "@/ui/MovieBox/MovieBox";
 import { useEffect, useRef, useState } from "react";
 import { fetchMovies } from "@/companents/home/explore/fetchGenres";
 import { MovieProps } from "../types";
+import { useSearchParams } from "next/navigation";
 
 type GenreProps = {
   data: any;
   handleRouteGenre: (id: number) => void;
+  id: string;
 } & MovieProps;
 
-export function Genres({ data, handleRouteGenre, ...props }: GenreProps) {
+export function Genres({ data, handleRouteGenre, id, ...props }: GenreProps) {
   const [language, setLanguage] = useState<string | null>(
     props.currentLanguage
   );
@@ -21,6 +23,20 @@ export function Genres({ data, handleRouteGenre, ...props }: GenreProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const scrollTo = searchParams.get("scrollTo");
+    if (scrollTo) {
+      const interval = setInterval(() => {
+        const el = document.getElementById(scrollTo);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          clearInterval(interval);
+        }
+      }, 100);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (data?.genres) {
@@ -37,7 +53,7 @@ export function Genres({ data, handleRouteGenre, ...props }: GenreProps) {
   }, [data, language]);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id={"genres"}>
         <h2 className="global-title">
           {language == "en-US" ? "Our Genres" : "Наши Жанры"}
         </h2>

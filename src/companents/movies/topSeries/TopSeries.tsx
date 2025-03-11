@@ -8,16 +8,22 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 
 type TopSeriesProps = {
   tvTop: any;
+  id: string;
   handleRouteTv: (id: number) => void;
 } & MovieProps;
 
-export function TopSeries({ tvTop, handleRouteTv, ...props }: TopSeriesProps) {
+export function TopSeries({
+  tvTop,
+  id,
+  handleRouteTv,
+  ...props
+}: TopSeriesProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id="tvTop">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Top series" : "Топ сериалы"}
         </h2>

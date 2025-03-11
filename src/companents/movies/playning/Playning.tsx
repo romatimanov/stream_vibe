@@ -9,15 +9,21 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 type PlayningProps = {
   playing: any;
   handleRoute: (id: number) => void;
+  id: string;
 } & MovieProps;
 
-export function Playning({ playing, handleRoute, ...props }: PlayningProps) {
+export function Playning({
+  playing,
+  handleRoute,
+  id,
+  ...props
+}: PlayningProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id="now">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Now playning" : "Сейчас смотрят"}
         </h2>

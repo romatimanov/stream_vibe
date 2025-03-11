@@ -8,16 +8,17 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 
 type TopMovieProps = {
   top: any;
+  id: string;
   handleRoute: (id: number) => void;
 } & MovieProps;
 
-export function TopMovie({ top, handleRoute, ...props }: TopMovieProps) {
+export function TopMovie({ top, handleRoute, id, ...props }: TopMovieProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id="trending">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Top movies" : "Самые популярные"}
         </h2>

@@ -11,10 +11,10 @@ export default function Home() {
   return (
     <>
       <Preview />
-      <Explore />
-      <Provide />
-      <Qestion />
-      <Plan />
+      <Explore id="categories" />
+      <Provide id="devices" />
+      <Qestion id="qestion" />
+      <Plan id="pricing" />
       <StartWatch />
     </>
   );

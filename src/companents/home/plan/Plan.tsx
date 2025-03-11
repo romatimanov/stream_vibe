@@ -6,7 +6,7 @@ import { useSubscriptionDataMount, useSubscriptionDataYears } from "./data";
 import { useCurrentLanguage } from "@/hook/useCurrentLanguage";
 import { Choose } from "@/ui/Choose/Choose";
 
-export default function Plan() {
+export default function Plan({ id }: { id: string }) {
   const currentLanguage = useCurrentLanguage();
 
   const [activeBtn, setActiveBtn] = useState<number>(0);
@@ -17,7 +17,7 @@ export default function Plan() {
 
   if (!currentLanguage) return;
   return (
-    <section className={`${style.plan} container`}>
+    <section className={`${style.plan} container`} id={id}>
       <div className={style.planTextContent}>
         <div className="global-text--content">
           <h2 className="global-title">

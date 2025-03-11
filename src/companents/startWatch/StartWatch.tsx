@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { useGetPopularMoviesQuery } from "@/api/previewApi";
 import { RootState } from "@/store/store";
 import { Button } from "@/ui/Button/Button";
+import ModalAuth from "../ModalAuth/ModalAuth";
+import { useState } from "react";
 
 export default function StartWatch() {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
   const { data, error, isLoading } = useGetPopularMoviesQuery(currentLanguage);
-
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка загрузки</div>;
 
@@ -33,7 +35,7 @@ export default function StartWatch() {
                 : "Это четкий и лаконичный призыв к действию, побуждающий пользователей зарегистрироваться для получения бесплатной пробной версии StreamVibe."}
             </p>
           </div>
-          <Button>
+          <Button onClick={() => setModalIsOpen(true)}>
             {currentLanguage == "en-US"
               ? "Start a Free Trail"
               : "Начать пробный период"}
@@ -58,6 +60,7 @@ export default function StartWatch() {
           ))}
         </ul>
       </div>
+      <ModalAuth setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} />
     </section>
   );
 }

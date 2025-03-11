@@ -2,6 +2,8 @@
 import { useCurrentLanguage } from "@/hook/useCurrentLanguage";
 import { Button } from "../Button/Button";
 import style from "./choose.module.css";
+import ModalAuth from "@/companents/ModalAuth/ModalAuth";
+import { useState } from "react";
 
 type ChooseProps = {
   styles?: string;
@@ -13,6 +15,7 @@ type ChooseProps = {
 
 export const Choose = ({ styles, title, text, price, plan }: ChooseProps) => {
   const currentLanguage = useCurrentLanguage();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   if (!currentLanguage) return;
   return (
@@ -26,15 +29,16 @@ export const Choose = ({ styles, title, text, price, plan }: ChooseProps) => {
         {plan}
       </p>
       <div className={style.btnGroup}>
-        <button className={style.btn}>
+        <button className={style.btn} onClick={() => setModalIsOpen(true)}>
           {currentLanguage == "en-US"
             ? "Start Free Trial"
             : "Попробовать бесплатно"}
         </button>
-        <Button styles={style.btnRed}>
+        <Button styles={style.btnRed} onClick={() => setModalIsOpen(true)}>
           {currentLanguage == "en-US" ? "Choose Plan" : "Выбрать план"}
         </Button>
       </div>
+      <ModalAuth setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { useCurrentLanguage } from "@/hook/useCurrentLanguage";
 import style from "./provide.module.css";
 import { Device } from "@/ui/Device/Device";
 
-export default function Provide() {
+export default function Provide({ id }: { id: string }) {
   const currentLanguage = useCurrentLanguage();
 
   if (!currentLanguage) return;
@@ -67,7 +67,7 @@ export default function Provide() {
   ];
 
   return (
-    <section className={`${style.provide} container`}>
+    <section className={`${style.provide} container`} id={id}>
       <div className={`${style.provideTextContent} global-text--content`}>
         <h2 className="global-title">
           {currentLanguage == "en-US"

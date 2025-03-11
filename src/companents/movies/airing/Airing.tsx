@@ -9,15 +9,16 @@ import { MovieCard } from "@/ui/MovieCard/MovieCard";
 type AiringProps = {
   tvToday: any;
   handleRouteTv: (id: number) => void;
+  id: string;
 } & MovieProps;
 
-export function Airing({ tvToday, handleRouteTv, ...props }: AiringProps) {
+export function Airing({ tvToday, handleRouteTv, id, ...props }: AiringProps) {
   const navigationPrevRef = useRef<HTMLButtonElement | null>(null);
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <div className={props.genres}>
+      <div className={props.genres} id="tvToday">
         <h2 className="global-title">
           {props.currentLanguage == "en-US" ? "Airing today" : "Сейчас в эфире"}
         </h2>

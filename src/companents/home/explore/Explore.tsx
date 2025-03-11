@@ -14,10 +14,10 @@ import Image from "next/image";
 import { fetchMovies } from "./fetchGenres";
 import { MovieBox } from "@/ui/MovieBox/MovieBox";
 import { RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@/companents/loader/Loader";
 
-export default function Explore() {
+export default function Explore({ id }: { id: string }) {
   const currentLanguage = useSelector(
     (state: RootState) => state.language.currentLanguage
   );
@@ -27,6 +27,20 @@ export default function Explore() {
   const navigationNextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
   const route = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const scrollTo = searchParams.get("scrollTo");
+    if (scrollTo) {
+      const interval = setInterval(() => {
+        const el = document.getElementById(scrollTo);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          clearInterval(interval);
+        }
+      }, 100);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     setLanguage(currentLanguage);
@@ -58,7 +72,7 @@ export default function Explore() {
   if (error) return <div>Ошибка загрузки</div>;
 
   return (
-    <section className={`${style.explore} container`}>
+    <section className={`${style.explore} container`} id={id}>
       <div className={style.exploreContent}>
         <div className="global-text--content">
           <h2 className="global-title">
