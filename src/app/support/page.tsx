@@ -6,7 +6,7 @@ export default function Support() {
   return (
     <>
       <SupportInfo />
-      <Qestion />
+      <Qestion id="qestion" />
       <StartWatch />
     </>
   );
