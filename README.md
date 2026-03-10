@@ -6,6 +6,8 @@ The application allows users to explore movies, view details, and browse trendin
 Live Demo:
 https://stream-vibe-seven.vercel.app/movies
 
+![Demo](screenshots/animation.gif)
+
 ---
 
 ## Features
