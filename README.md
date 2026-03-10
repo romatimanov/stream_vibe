@@ -61,13 +61,13 @@ Responsive mobile layout
 Clone the repository
 
 ```bash
-git clone https://github.com/romatimanov/your-repository-name.git
+git clone https://github.com/romatimanov/stream_vibe.git
 ```
 
 Go to the project directory
 
 ```bash
-cd your-repository-name
+cd stream_vibe
 ```
 
 Install dependencies
