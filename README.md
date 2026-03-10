@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StreamVibe Movies
 
-## Getting Started
+A modern movie browsing web application built with React and TypeScript.
+The application allows users to explore movies, view details, and browse trending content through a clean and responsive interface.
 
-First, run the development server:
+Live Demo:
+https://stream-vibe-seven.vercel.app/movies
+
+---
+
+## Features
+
+* Browse popular and trending movies
+* Movie detail pages
+* Responsive UI (desktop / tablet / mobile)
+* Dynamic routing
+* API integration for movie data
+* Fast client-side navigation
+* Modern UI components
+
+---
+
+## Tech Stack
+
+Frontend
+
+* React
+* TypeScript
+* Vite
+
+State Management
+
+* React hooks
+
+Styling
+
+* CSS / modern responsive layout
+
+Deployment
+
+* Vercel
+
+---
+
+## Screenshots
+
+Add screenshots of the application interface here.
+
+Example:
+
+Home page
+Movie details page
+Responsive mobile layout
+
+---
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/romatimanov/your-repository-name.git
+```
+
+Go to the project directory
+
+```bash
+cd your-repository-name
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src
+ ├── components
+ ├── pages
+ ├── services
+ ├── hooks
+ ├── styles
+ └── utils
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## API
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses an external movie API to fetch movie data such as:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* popular movies
+* movie details
+* movie images
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application is deployed on **Vercel**.
+
+Live version:
+https://stream-vibe-seven.vercel.app/movies
+
+---
+
+## Author
+
+Roman Deshevitsyn
+
+GitHub
+https://github.com/romatimanov
+
+LinkedIn
+https://linkedin.com/in/roman-deshevitsyn-1272612b9
